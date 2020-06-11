@@ -1,0 +1,156 @@
+[size=200]Voraria[/size]
+[size=85]A Terraria Vore Mod[/size]
+
+[img]https://i.ibb.co/y5gw5r1/Voraria-Mod-Listing.png[/img]
+
+Compatible with tModLoader v0.11.7.1 and Terraria 1.3.5.3 (not the most recent update, Journey's End (1.4), although I'll update the mod when support for 1.4 is added to tModLoader!)
+
+To see it in action, check out [url=https://www.youtube.com/watch?v=kN7kmAWxgGg]Test Footage (v0.3.0)[/url] on YouTube (Thanks WobblyWolfess!)
+
+[size=150]Features[/size]
+[list]
+[*]Eat and digest (almost) any mob or NPC, or get eaten yourself!
+[*]Any combination of gender for pred and prey!
+[*]Custom belly sprite with multiple stages of digestion!
+[*]Custom audio of belly gurgles, belches, and gulping!
+[*]Valid preds, prey, and fatal vs non-fatal vore all configurable by gender and type!
+[*]Lore-friendly crafting tree progression!
+[*]New Succubus town NPC who sells new vore-related items!
+[*]More to come! Comment here on the discussion thread with feature requests or bug reports.[/list]
+
+[size=150]Installation[/size]
+1. You'll need to own the [url=https://store.steampowered.com/app/105600/Terraria/]Steam version[/url] of Terraria. Other versions will not work.
+2. Install [url=https://store.steampowered.com/app/1281930/tModLoader/]tModLoader[/url] through Steam. This is essentially a separate version of Terraria with modding support built in.
+3. Download the [url=https://mega.nz/file/eIVnmSoQ#Bhh2lEC_UGSnehpgw7BKUVma4ZdJQsrRDj54W37ZPI0]mod's zip file[/url] and extract the .tmod file.
+4. Launch tModLoader through Steam and click "Mods" on the main menu.
+5. Click "Open Mods Folder" at the bottom of the mods list. This should open a file browser to the tModLoader mod folder.
+6. Drag the .tmod file you extracted earlier into this folder.
+7. Click "Reload Mods" in tModLoader.
+8. You should see the mod now, as in the image above.
+9. If the mod says "Disabled", click it to change it to "Enabled".
+10. Go back to the main menu and start a game! It doesn't need to be a new character or world.
+
+[size=150]Limitations[/size]
+[list]
+[*]Multiplayer is extremely broken/buggy (for now).
+[*]Most mobs, even the human-like ones, have no belly sprites. If there's a particular mob you want to see enhanced support for, make a feature request!
+[*]Pred and prey vore status is reset when saving-and-exiting or restarting Terraria. The game isn't really designed to save NPCs :([/list]
+
+[size=150]Gameplay[/size]
+
+[b]The Succubus[/b]
+
+The Succubus is a new town NPC that sells the base version of the various amulets, talismans, and charms. She also provides a helpful walkthrough of what each type of item does, how to craft them, and more. She'll defend herself with a demon scythe, but if an enemy gets too close, she'll gulp them down instead. She has no special requirements for spawning, you just need an open house!
+
+[b]Eating Others[/b]
+
+You can purchase a starter Throat Amulet from the Succubus. Using the amulet with left-click swallows any NPCs or mobs you hit, while right-click regurgitates any prey you've already swallowed. A UI panel will list out all of the prey you are currently carrying, as well as their progress towards being digested. Better amulets can be crafted at an anvil using five pre-hardmode metal bars and two of the right type of gem for the type of vore. Higher tiers of amulets increase your prey capacity and reduce the chance that enemies will escape. All vore by players and friendly NPCs is non-fatal by default, but this can be changed by using Acid and Hunger Charms.
+
+[b]Being Eaten[/b]
+
+All enemies have a chance to eat you when they make contact with you. Holding down the jump button will allow you to struggle and attempt to escape, if you so choose. You can also purchase a starter Throat Talisman from the Succubus, or craft a better one from five blocks of wood and two of the right type of gem at any workbench. Using a talisman on any NPC or mob will cause them to immediately swallow you. To be digested by a friendly NPC, you'll need to activate a Hunger Charm.
+
+[b]Digestion[/b]
+
+While a creature is swallowed by a predator that wishes to digest them (either due to hostility or the effects of a hunger charm), their life is slowly sapped away. They take more damage the closer they are to being fully digested. If their health drops all the way to zero, they'll die, and the predator will get kill credit and any item drops they would've gotten from killing the prey normally. If a predator gets digested, all of their prey will be transferred to the new predator.
+
+[b]Struggling[/b]
+
+Swallowed prey may attempt to escape from the bowels of their predator. Every digestion tick, they have a chance to successfully struggle based on the toughness of the pred and the attack power of the prey. Struggling undoes progress on the digestion meter, and if the meter drops back to empty, the prey escapes.
+
+[b]Charms[/b]
+
+Charms are items which modify the effects of vore while their buffs are active. You don't need to equip them as accessories, just use them like a tool from the hotbar to apply their buff, and then shuffle them back into your inventory until you need them again. Right-clicking on any of the active buffs beneath the hotbar will cancel them. Better versions of each kind of charm can be crafted from an appropriate ingredient and metal bars at a workbench.
+
+[b]New NPC Effects[/b]
+
+Several town NPCs already have charms, and can apply the effects to you! Being (nonfatally) swallowed by the Nurse or Witch Doctor will heal you, while the Dryad and the Wizard can restore your mana.
+
+[b]Settings and Configuration[/b]
+
+While in-game, you can configure the mod by going to Settings -> Mod Configuration -> Voraria: Settings. You can configure which types of creatures can be predators or prey, and which can digest others or be digested themselves. There are also toggles for various sound effects, if you're not into farting, belching, or whatever else. If there are other settings you have a need for, let me know with a feature request!
+
+[size=150]Changelog[/size]
+v0.4.0 [url=https://mega.nz/file/eIVnmSoQ#Bhh2lEC_UGSnehpgw7BKUVma4ZdJQsrRDj54W37ZPI0](Download)[/url]
+[list]
+[*]Feature: Expanded tag-based filtering system for turning vore mechanics on and off
+[*]Feature: Struggle contest system
+[*]Feature: Slime pred spritework
+[*]Feature: Custom belly spritework for female town NPCs (credit to MysticSummoner)
+[*]Feature: Custom belly spritework for male town NPCs (credit to Myconid32)
+[*]Feature: Nymph belly spritework
+[*]Feature: Lamia belly spritework (credit to MysticSummoner)
+[*]Feature: Harpy belly spritework (credit to jaded353)
+[*]Feature: Werewolf belly spritework (credit to KraGo)
+[*]Feature: Larger belly sprite sizes for players (credit to MysticSummoner)
+[*]Feature: Debug setting for disabling prey capacity limit
+[*]Bug: Acquiring and using the Soul Charm before hardmode allows for sequence breaking
+[*]Bug: Belly sprites positioned incorrectly while riding mounts
+[*]Bug: Merfolk/Werewolf transformations use default belly color
+[*]Bug: The Eternia Crystal can be vored
+[*]Bug: Some "pseudo-projectile" NPCs can vore and be vored
+[*]Bug: Prey stuck in permanently swallowed state if pred despawns
+[*]Bug: Secondary parts of some bosses are still vorable
+[*]Bug: Enemies charge off in random directions after voring the player
+[*]Change: Better struggle indicator
+[*]Change: Rework digestion damage
+[*]Change: Stack charm effects of both pred and prey where applicable
+[*]Change: Give all mobs the lowest tier of the life charm effect
+[*]Change: Size belly based on "mass" instead of health
+[*]Change: Change default attachment point for NPC bellies
+[/list]
+Previous versions
+[spoiler]
+v0.3.0 [url=https://mega.nz/file/XFkwwKgB#qQ0oEUh9hb2Q2W49u6o-sghQi6J-N6eKddUymh3B8jo](Download)[/url] [url=https://www.youtube.com/watch?v=kN7kmAWxgGg](Test footage by WobblyWolfess)[/url]
+[list]
+[*]Feature: Mob preds (NPC-initiated vore)
+[*]Feature: Struggling mechanic
+[*]Feature: Stomach capacity limit/increase mechanic
+[*]Feature: Non-fatal vore mechanic
+[*]Feature: Healing vore mechanic
+[*]Feature: Mana regen vore mechanic
+[*]Feature: Soul vore mechanic
+[*]Feature: Use buff system to display active vore-related effects
+[*]Feature: Holding a prey tool to guarantee mobs will vore the player on contact
+[*]Feature: Fart sounds
+[*]Feature: Settings toggle for each type of sound
+[*]Feature: Vore-specific player death messages
+[*]Feature: NPC prey and pred dialogue
+[*]Bug: The Succubus can vore bosses
+[*]Bug: Everyone can vore bosses
+[/list]
+v0.2.1 [url=https://mega.nz/file/eQskwaqL#pRWEgtvAVqFsEL8LIQzKiRcrGpppUu6Wkwurj5eEtX0](Download)[/url] [url=https://www.youtube.com/watch?v=YB9ff6nYQ6U](Test footage by WobblyWolfess)[/url]
+[list]
+[*]Feature: Succubus NPC
+[*]Bug: Digesting an enemy allows them to get one last hit on you before dying
+[*]Bug: Debugging messages appear when a pred digests another pred
+[*]Bug: Digested enemies don't drop items
+[*]Bug: Segmented worm-type enemies are eaten one piece at a time
+[*]Bug: Mod configuration is completely off by default
+[*]Other miscellaneous bug-fixes and improvements[/list]
+v0.2.0 [url=https://mega.nz/file/rVl2zahb#ShCctn4yNbHc_yX8s3iTd6F4VucZqbXY6jMmcBlXWxU](Download)[/url] [url=https://www.youtube.com/watch?v=ob9js6Lwuh8](Test footage by WobblyWolfess)[/url]
+[list]
+[*]Feature: Replace "Vore" item with something more lore-friendly
+[*]Feature: Multiple prey at once
+[*]Feature: Predator/prey/digestion settings
+[*]Feature: Town NPC preds (plus barebones mob preds)
+[*]Feature: Separate male/female sound effects
+[*]Feature: Belly swallow animation
+[*]Bug: Prey can take damage and die without being digested
+[*]Bug: Boss music plays while digesting
+[*]Other miscellaneous bug-fixes and improvements[/list]
+v0.1.0 [url=https://mega.nz/file/SZlSxY6Z#P2SGH31FhHjaWjRRcST5045QbCVaIoAFDD_8g2FUwNA](Download)[/url]
+[list]
+[*]Initial release[/list]
+[/spoiler]
+
+[size=150][url=https://trello.com/b/kSwGDF9g/voraria-development]Up-to-Date Feature Request and Bug Board[/url][/size]
+
+[size=150][url=https://discord.gg/B5nmMN9]Discord server[/url][/size]
+
+Don't see a feature that you want or found a bug that isn't on the board? Drop a reply here in this thread!
+
+
+This is my first time modding Terraria and my first time submitting content to Eka's so let me know what I can improve on!
+
+[url=https://ibb.co/7jmr0bV][img]https://i.ibb.co/7jmr0bV/Voraria-Screenshot-1.png[/img][/url] [url=https://ibb.co/0FK1c4f][img]https://i.ibb.co/0FK1c4f/Voraria-Screenshot-2.png[/img][/url] [url=https://ibb.co/s6LmKW9][img]https://i.ibb.co/s6LmKW9/Voraria-Screenshot-3.png[/img][/url]

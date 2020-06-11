@@ -1,0 +1,91 @@
+
+Charms: cause additional side-effects while equipped
+
+Acid Charm: controls whether prey can be digested
+    Materials: metal bars, gels
+    Upgrades: improves digestion rate of prey
+
+Scat Charm: controls whether prey are turned to poop and need to be disposed of after digesting
+    Materials: metal bars, mushrooms
+
+Hunger Charm: controls whether otherwise friendly predators digest players
+    Materials: metal bars, herbs
+    Upgrades: improves digestion rate for predator
+
+Life Charm: controls whether digesting prey regenerates health and non-digesting prey get healed themselves
+    Materials: metal bars, life crystals
+    Upgrades: improves health regen while digesting prey and improves health regen for self while vored by a predator with the same effect
+
+Mana Charm: controls whether digesting prey regenerates mana and non-digesting prey get mana themselves
+    Materials: metal bars, mana stars
+    Upgrades: improves mana regen while digesting prey and improves mana regen for self while vored by a predator with the same effect
+
+Soul Charm: controls whether digested prey drop soul items on death
+    Materials: metal bars, souls
+    Upgrades: increases drop rate and adds additional rare drops
+
+
+Amulets: tools for predators to vore others
+
+Throat Amulet: player can oral vore others or regurgitate them
+    Materials: metal bars, amethyst gems
+    Upgrades: increases prey capacity and reduces struggle chance of prey
+
+Breast Amulet: player can breast vore others or release them
+    Materials: metal bars, topaz gems
+    Upgrades: increases prey capacity and reduces struggle chance of prey
+
+Bowel Amulet: player can anal vore others or shit them out
+    Materials: metal bars, ruby gems
+    Upgrades: increases prey capacity and reduces struggle chance of prey
+
+Womb Amulet: player can unbirth others or give birth to them
+    Materials: metal bars, sapphire gems
+    Upgrades: increases prey capacity and reduces struggle chance of prey
+
+Penis Amulet: player can cock vore others or ejaculate them
+    Materials: metal bars, emerald gems
+    Upgrades: increases prey capacity and reduces struggle chance of prey
+
+
+Talismans: tools for prey to get themselves vored
+
+Throat Talisman: player can force NPCs to oral vore them or regurgitate them
+    Materials: wood, amethyst gems
+
+Breast Talisman: player can force NPCs to breast vore them or release them
+    Materials: wood, topaz gems
+
+Bowel Talisman: player can force NPCs to anal vore them or shit them out
+    Materials: wood, ruby gems
+
+Womb Talisman: player can force NPCs to unbirth them or give birth to them
+    Materials: wood, sapphire gems
+
+Penis Talisman: player can force NPCs to cock vore them or ejaculate them
+    Materials: wood, emerald gems
+
+
+Metal Tiers
+
+Copper, Tin
+Iron, Lead
+Silver, Tungsten
+Gold, Platinum
+Demonite, Crimtane
+Hellstone
+Cobalt, Palladium
+Mythril, Orichalcum
+Adamantite, Titanium
+Chlorophyte
+Luminite
+
+
+Gem Rarities
+
+Amethyst
+Topaz
+Sapphire
+Emerald
+Ruby
+Diamond, Amber

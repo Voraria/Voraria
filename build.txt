@@ -1,0 +1,3 @@
+displayName = Voraria
+author = Maroy
+version = 0.4.0
