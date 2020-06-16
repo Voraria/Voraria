@@ -17,6 +17,20 @@ namespace VoreMod
         Eye = 1 << 9,
         Slime = 1 << 10,
         Spider = 1 << 11,
+        Bat = 1 << 12,
+        Hornet = 1 << 13,
+        Undead = 1 << 14,
+        Beast = 1 << 15,
+        Reptile = 1 << 16,
+        Construct = 1 << 17,
+        Plant = 1 << 18,
+        Critter = 1 << 19,
+        Fish = 1 << 20,
+        Insect = 1 << 21,
+        Flying = 1 << 22,
+        Mimic = 1 << 23,
+        Projectile = 1 << 24,
+        Boss = 1 << 25,
         All = ~0,
     }
 
@@ -34,6 +48,20 @@ namespace VoreMod
         public bool Eye;
         public bool Slime;
         public bool Spider;
+        public bool Bat;
+        public bool Hornet;
+        public bool Undead;
+        public bool Beast;
+        public bool Reptile;
+        public bool Construct;
+        public bool Plant;
+        public bool Critter;
+        public bool Fish;
+        public bool Insect;
+        public bool Flying;
+        public bool Mimic;
+        public bool Projectile;
+        public bool Boss;
 
         public static implicit operator EntityTags(EntityTagObject obj)
         {
@@ -50,6 +78,20 @@ namespace VoreMod
             if (obj.Eye) tags |= EntityTags.Eye;
             if (obj.Slime) tags |= EntityTags.Slime;
             if (obj.Spider) tags |= EntityTags.Spider;
+            if (obj.Bat) tags |= EntityTags.Bat;
+            if (obj.Hornet) tags |= EntityTags.Hornet;
+            if (obj.Undead) tags |= EntityTags.Undead;
+            if (obj.Beast) tags |= EntityTags.Beast;
+            if (obj.Reptile) tags |= EntityTags.Reptile;
+            if (obj.Construct) tags |= EntityTags.Construct;
+            if (obj.Plant) tags |= EntityTags.Plant;
+            if (obj.Critter) tags |= EntityTags.Critter;
+            if (obj.Fish) tags |= EntityTags.Fish;
+            if (obj.Insect) tags |= EntityTags.Insect;
+            if (obj.Flying) tags |= EntityTags.Flying;
+            if (obj.Mimic) tags |= EntityTags.Mimic;
+            if (obj.Projectile) tags |= EntityTags.Projectile;
+            if (obj.Boss) tags |= EntityTags.Boss;
             return tags;
         }
 
@@ -69,6 +111,20 @@ namespace VoreMod
                 Eye = tags.HasAll(EntityTags.Eye),
                 Slime = tags.HasAll(EntityTags.Slime),
                 Spider = tags.HasAll(EntityTags.Spider),
+                Bat = tags.HasAll(EntityTags.Bat),
+                Hornet = tags.HasAll(EntityTags.Hornet),
+                Undead = tags.HasAll(EntityTags.Undead),
+                Beast = tags.HasAll(EntityTags.Beast),
+                Reptile = tags.HasAll(EntityTags.Reptile),
+                Construct = tags.HasAll(EntityTags.Construct),
+                Plant = tags.HasAll(EntityTags.Plant),
+                Critter = tags.HasAll(EntityTags.Critter),
+                Fish = tags.HasAll(EntityTags.Fish),
+                Insect = tags.HasAll(EntityTags.Insect),
+                Flying = tags.HasAll(EntityTags.Flying),
+                Mimic = tags.HasAll(EntityTags.Mimic),
+                Projectile = tags.HasAll(EntityTags.Projectile),
+                Boss = tags.HasAll(EntityTags.Boss),
             };
             return obj;
         }
