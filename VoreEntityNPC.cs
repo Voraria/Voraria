@@ -184,7 +184,7 @@ namespace VoreMod
             }
             switch (npc.type)
             {
-
+                #region Town NPCs
                 case NPCID.ArmsDealer: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/ArmsDealer_Belly");
                 case NPCID.Clothier: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Clothier_Belly");
                 case NPCID.Cyborg: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Cyborg_Belly");
@@ -209,6 +209,7 @@ namespace VoreMod
                 case NPCID.Truffle: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Truffle_Belly");
                 case NPCID.WitchDoctor: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/WitchDoctor_Belly");
                 case NPCID.Wizard: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Wizard_Belly");
+                #endregion
 
                 case NPCID.Nymph: return ModContent.GetTexture(nameof(VoreMod) + "/Belly");
                 case NPCID.DesertLamiaLight:
@@ -217,6 +218,7 @@ namespace VoreMod
                 case NPCID.Harpy: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Harpy_Belly");
                 case NPCID.Werewolf: return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Werewolf_Belly");
             }
+            if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP")) return ModContent.GetTexture(nameof(VoreMod) + "/NPCs/Calamity/DrunkPrincess_Belly");
             if (npc.townNPC) return ModContent.GetTexture(nameof(VoreMod) + "/Belly");
             return null;
         }
@@ -308,6 +310,13 @@ namespace VoreMod
 
         public override int GetEscapeLimit(VoreEntity prey) => (int)System.Math.Round((Main.expertMode ? npc.defDefense * 3 : npc.defDefense * 10) * GetLifeRatio());
 
+        public override bool ShouldDigest(VoreEntity prey)
+        {
+            if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
+                return true;
+            return base.ShouldDigest(prey);
+        }
+
         public override bool IsHostileTo(VoreEntity other)
         {
             if (other is VoreEntityNPC)
@@ -377,12 +386,14 @@ namespace VoreMod
             switch (npc.type)
             {
                 case NPCID.DungeonGuardian:
-                case NPCID.CultistTablet:
+                // case NPCID.CultistTablet:
                 case NPCID.PirateShip:
                 case NPCID.PirateShipCannon:
                 case NPCID.ForceBubble:
                 case NPCID.DD2EterniaCrystal:
                 case NPCID.DD2LanePortal:
+
+                case NPCID.TargetDummy:
                     return false;
             }
             return true;
