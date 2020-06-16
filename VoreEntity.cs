@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Terraria.Audio;
 
 namespace VoreMod
 {
