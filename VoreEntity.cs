@@ -104,7 +104,8 @@ namespace VoreMod
 
         public void Swallow(VoreEntity prey)
         {
-            AddPrey(prey);
+            if (IsChild()) GetParent().AddPrey(prey);
+            else AddPrey(prey);
         }
 
         public void Regurgitate(VoreEntity prey)
