@@ -168,6 +168,20 @@ namespace VoreMod.Plugins
                     .Frames(15)
                     .ColorMode(ColorMode.Dye)
                 )
+            )
+            .Item(ItemID.HuntressAltShirt, nameof(ItemID.HuntressAltShirt), item => item
+                .Sprite(SpriteType.Belly, "Clothing/RedRidingDress_Belly_Overlay", sprite => sprite
+                    .Layout(SpriteLayout.SizeY)
+                    .Frames(15)
+                    .ColorMode(ColorMode.Dye)
+                )
+            )
+            .Item(ItemID.PrincessDress, nameof(ItemID.PrincessDress), item => item
+                .Sprite(SpriteType.Belly, "Clothing/PrincessDressClothier_Belly_Overlay", sprite => sprite
+                    .Layout(SpriteLayout.SizeY)
+                    .Frames(15)
+                    .ColorMode(ColorMode.Dye)
+                )
             );
         #endregion
     }
