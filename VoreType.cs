@@ -5,5 +5,9 @@ namespace VoreMod
     {
         None,
         Oral,
+        Anal,
+        Unbirth,
+        Cock,
+        Breast,
     }
 }

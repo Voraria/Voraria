@@ -323,35 +323,11 @@ namespace VoreMod
             if (targetRatio > bellyRatio) bellyRatio = MathHelper.Min(targetRatio, bellyRatio + 0.02f);
         }
 
-        public virtual bool HasBelly() => GetBellyRatio() > 0f && !VoreConfig.Instance.DebugNoBellies;
+        public virtual bool HasSprites(SpriteType type) => GetBellyRatio() > 0f && GetSprites(type) != null && !VoreConfig.Instance.DebugNoBellies;
 
-        public abstract Texture2D GetBellyTexture();
-
-        public virtual Rectangle GetBellyRect()
-        {
-            Texture2D texture = GetBellyTexture();
-
-            int frameCount = 6;
-            int frameSize = texture.Height / frameCount;
-            int frame = 0;
-
-            float ratio = GetBellyRatio();
-
-            if (ratio >= 0.8f) frame = 5;
-            else if (ratio >= 0.6f) frame = 4;
-            else if (ratio >= 0.4f) frame = 3;
-            else if (ratio >= 0.2f) frame = 2;
-            else if (ratio > 0f) frame = 1;
-            else frame = 0;
-
-            return new Rectangle(0, frameSize * frame, texture.Width, frameSize);
-        }
+        public abstract List<VoreSprite> GetSprites(SpriteType type);
 
         public virtual float GetBellyRatio() => VoreConfig.Instance.DebugFullBellies ? float.PositiveInfinity : bellyRatio;
-
-        public abstract Vector2 GetBellyOffset();
-
-        public abstract Color GetBellyColor();
 
         public virtual Vector2 GetBellyLocation() => GetPosition() + new Vector2(0f, -5f);
 

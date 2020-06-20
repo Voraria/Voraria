@@ -28,5 +28,11 @@ namespace VoreMod
         {
             return (self & tags) != 0;
         }
+
+        public static List<T> SafeConcat<T>(this List<T> list, IEnumerable<T> other)
+        {
+            if (other != null) list.AddRange(other);
+            return list;
+        }
     }
 }

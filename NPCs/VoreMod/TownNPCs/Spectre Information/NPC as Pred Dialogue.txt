@@ -1,0 +1,10 @@
+THESE WOULD ONLY POP UP IF THE PLAYER IS NOT IN THE REGENERATIVE STATE FROM INTERACTING WITH THE NPC
+Fatal:
+"It's so dark in my belly, just like the underground, just pretend you are there, and this will all be over soon."
+"Stop making my belly gurgle so much! I need to listen for possible enemies nearby!"
+"You better not mess up my figure, I have no idea what I'd do if my armor no longer fit."
+
+Non-Fatal:
+"I'll keep you safe, go ahead and relax in there."
+"You didn't have to force your way down my throat, now I didn't have enough time to prepare my healing acids."
+"You're lucky that you seem like a friend, otherwise, you'd be melting in my gut right now!"

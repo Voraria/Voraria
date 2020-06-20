@@ -1,0 +1,16 @@
+Basic menu, two options;
+Heal
+Close
+
+Heal brings up a dialogue that says:
+"I can heal you, but you'll have to spend some time in my belly, my acids have been affected by my diet down here and they can restore your vitality."
+With two options:
+Continue
+Close
+
+Continue has the player eaten by the NPC, and they start getting healed.
+When right clicked in this state, a dialogue is brought up:
+"Do you want out? If you're ready I'll regurgitate you."
+Two Options:
+Release
+Close
