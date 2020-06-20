@@ -1,4 +1,5 @@
 using Terraria;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace VoreMod
@@ -33,6 +34,12 @@ namespace VoreMod
         {
             if (other != null) list.AddRange(other);
             return list;
+        }
+
+        public static U MaxOrDefault<T, U>(this IEnumerable<T> self, System.Func<T, U> selector, U defaultValue = default(U))
+        {
+            if (self.Any()) return self.Max(selector);
+            return defaultValue;
         }
     }
 }

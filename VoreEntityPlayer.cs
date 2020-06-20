@@ -118,7 +118,7 @@ namespace VoreMod
         public override int GetEscapeLimit(VoreEntity prey)
         {
             int limit = 0;
-            limit += GetPlayer().inventory.Select(i => i.modItem).OfType<AmuletBase>().Max(i => i.EscapeLimit);
+            limit += GetPlayer().inventory.Select(i => i.modItem).OfType<AmuletBase>().MaxOrDefault(i => i.EscapeLimit);
             return limit;
         }
 
@@ -139,7 +139,7 @@ namespace VoreMod
             return 1f / 3f;
         }
 
-        public override int GetCapacity() => GetPlayer().inventory.Select(i => i.modItem).OfType<AmuletBase>().Max(i => i.Capacity);
+        public override int GetCapacity() => GetPlayer().inventory.Select(i => i.modItem).OfType<AmuletBase>().MaxOrDefault(i => i.Capacity);
 
         public override CharmEffects GetBaseCharms()
         {
