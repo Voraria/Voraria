@@ -242,7 +242,7 @@ namespace VoreMod
 
                 if (struggleRoll >= escapeRoll)
                 {
-                    digestValue = (int)MathHelper.Clamp(digestValue - (struggleBonus * GetLifeRatio()), 0, pred.GetDigestionLimit(this));
+                    digestValue = (int)MathHelper.Clamp(digestValue - struggleBonus, 0, pred.GetDigestionLimit(this));
                     escape = digestValue <= 0;
 
                     Main.PlaySound(GetPredator().GetHitSound(), GetPosition());

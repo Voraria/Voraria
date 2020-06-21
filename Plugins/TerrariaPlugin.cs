@@ -33,7 +33,10 @@ namespace VoreMod.Plugins
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
                 .CharmEffects(new CharmEffects() { life = ItemTier.CopperTin, mana = ItemTier.SilverTungsten, acid = ItemTier.CopperTin, hunger = ItemTier.CopperTin })
                 .Sprite(SpriteType.Belly, "TownNPCs/Dryad_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+                .Dialogue(DialogueType.PlayerTalisman, "Hmm... you know, it's been a long time since I've had a live meal...")
+                .Dialogue(DialogueType.PlayerTalisman, "Why is my stomach rumbling, you ask? I'm a tree nymph, we eat other creatures rather often.")
+                .Dialogue(DialogueType.PlayerTalisman, "You've been off so much purifying the world... how about cleansing my stomach for a change?"))
 
             .NPC(NPCID.DyeTrader, nameof(NPCID.DyeTrader), npc => npc
                 .Tags(EntityTags.Male | EntityTags.TownNPC)
@@ -48,7 +51,9 @@ namespace VoreMod.Plugins
             .NPC(NPCID.Guide, nameof(NPCID.Guide), npc => npc
                 .Tags(EntityTags.Male | EntityTags.TownNPC)
                 .Sprite(SpriteType.Belly, "TownNPCs/Guide_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} swallowed up {Prey} like a big, filling spaghetti wire.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Prey} got {Pred}'s stomach too wired up."))
 
             .NPC(NPCID.Mechanic, nameof(NPCID.Mechanic), npc => npc
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
@@ -74,7 +79,36 @@ namespace VoreMod.Plugins
             .NPC(NPCID.PartyGirl, nameof(NPCID.PartyGirl), npc => npc
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
                 .Sprite(SpriteType.Belly, "TownNPCs/PartyGirl_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} stuffed herself like a Pigronata with {Prey}.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Prey} spent too long at the party in {Pred}'s belly.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} gobbled up {Prey} like a big birthday cake.")
+                .Dialogue(DialogueType.PlayerDigesting, "U-uhhh... I dunno if I like this party anymore...")
+                .Dialogue(DialogueType.PlayerDigesting, "You're... you're gonna let me out soon, right? Hello? {Pred}?")
+                .Dialogue(DialogueType.PlayerDigesting, "Mmf... w--well, I hope you enjoyed me, at least! Like a big, delicious cake...")
+                .Dialogue(DialogueType.PlayerNonFatal, "Ooo, I always love these sorts of parties! They're so comfy and warm...")
+                .Dialogue(DialogueType.PlayerNonFatal, "Hey, can you send down some balloons and cupcakes? I'm kinda hungry too...")
+                .Dialogue(DialogueType.PlayerNonFatal, "Mmm... might take a nap in here... so nice and cozy...")
+                .Dialogue(DialogueType.VoredPlayer, "Ooo, you went down like a big, delicious cake! I SO wanna eat you again later...")
+                .Dialogue(DialogueType.VoredPlayer, "You havin' fun at the party in my belly, {Prey}?")
+                .Dialogue(DialogueType.VoredPlayer, "Oof, I feel so heavy now... I hope I can still have parties with you in there...")
+                .Dialogue(DialogueType.VoredPlayer, "Hehee, look at how big you made me! Like a Pigronata full of candy!~")
+                .Dialogue(DialogueType.DigestingPlayer, "Mmm... I really want cupcakes for dessert... not that they'd taste better than you, {Prey}.")
+                .Dialogue(DialogueType.DigestingPlayer, "Aww, trying to leave so soon? The party's not over yet, silly! You gotta clean up after any good rave...")
+                .Dialogue(DialogueType.DigestingPlayer, "Well, look at it this way: once you're belly fat, you'll always help me stay the life of the party! :D")
+                .Dialogue(DialogueType.NonFatalPlayer, "See? It's not so bad! Just relax and have a great time!")
+                .Dialogue(DialogueType.NonFatalPlayer, "Aren't my belly's parties the best? I try to invite other people, but they don't seem too excited...")
+                .Dialogue(DialogueType.NonFatalPlayer, "You know, you can sleep in there if you want... slumber parties are always great, especially when they're so tasty and filling!")
+                .Dialogue(DialogueType.NonFatalPlayer, "I should totally eat some balloons and party favors... no party's complete without 'em, not even a belly party!")
+                .Dialogue(DialogueType.VoredOther, "Oohhh, it's always so fun to throw a party in my belly! You wanna join in?")
+                .Dialogue(DialogueType.VoredOther, "Hey, do you have some balloons for me to eat? I think this tum needs to be a little more festive...")
+                .Dialogue(DialogueType.VoredOther, "Happy birthday to you, happy " + $"[c/00FF00:*BURP!*]" + "-day to you...")
+                .Dialogue(DialogueType.PlayerTalisman, "Ooo, that necklace looks cool... and you smell like a tasty cupcake with it on, too!")
+                .Dialogue(DialogueType.PlayerTalisman, "Heyyyy! There's a party in my belly, and you're invited! Wanna stop by?")
+                .Dialogue(DialogueType.PlayerTalisman, "You smell like a yummy cake... come on, lemme have a taste! Just one bite, I promise!")
+                .Dialogue(DialogueType.PlayerAmulet, "Ooo, you look hungry... m-maybe I can give you a cake or something?")
+                .Dialogue(DialogueType.PlayerAmulet, "Oh, hey there! Got any exciting plans, or just here to have some cupcakes?... o-or me...?")
+                .Dialogue(DialogueType.PlayerAmulet, "Wait, a party in YOUR belly?... that sounds awesome, lemme in!"))
 
             .NPC(NPCID.Pirate, nameof(NPCID.Pirate), npc => npc
                 .Tags(EntityTags.Male | EntityTags.TownNPC)
@@ -94,7 +128,24 @@ namespace VoreMod.Plugins
             .NPC(NPCID.Stylist, nameof(NPCID.Stylist), npc => npc
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
                 .Sprite(SpriteType.Belly, "TownNPCs/Stylist_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} let {Prey} marinate for a while in her stomach acids.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Prey} got a free 'cut courtesy of {Pred}'s gut.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} just couldn't resist {Prey}'s delectable hair.")
+                .Dialogue(DialogueType.VoredPlayer, "Mmmf... something about your scalp just speaks volumes to my taste buds...")
+                .Dialogue(DialogueType.VoredPlayer, "This is MUCH better than just doing your hair with scissors and stuff... much more filling, too!")
+                .Dialogue(DialogueType.DigestingPlayer, "Is... is this how all those spiders feel when they eat their prey? I'll have to try this a bit more myself...")
+                .Dialogue(DialogueType.DigestingPlayer, "Well, hey, you've got an easy cut. Just stick your head in those acids for a bit, your hair'll be nice and short!")
+                .Dialogue(DialogueType.DigestingPlayer, "Look, we'll cut a deal: you stay and digest, and I give you a discount on your next cut. Will that make you stop squirming?")
+                .Dialogue(DialogueType.NonFatalPlayer, "Now, be careful not to rub against the walls too much. You wouldn't want your hair to get ruined.")
+                .Dialogue(DialogueType.NonFatalPlayer, "Alright, sit in there and marinate for now, I'll drink some water to rinse your color out in about 25 minutes...")
+                .Dialogue(DialogueType.VoredOther, "Oh, you want a haircut? Just sit in the chair, I'll do yours once I'm done with this one...")
+                .Dialogue(DialogueType.VoredOther, "Does this belly make my hair look bad? Give me an honest answer, I won't judge.")
+                .Dialogue(DialogueType.VoredOther, "Alright, just a minute, I'll be with you once my current client's done... what kinda cut do you want?")
+                .Dialogue(DialogueType.PlayerTalisman, "Hey, your head looks a bit messy... howsabout a special kind of soak for that hair?~")
+                .Dialogue(DialogueType.PlayerTalisman, "Just a little off the top? Honey, stomach acid's gonna get you way more than that...")
+                .Dialogue(DialogueType.PlayerTalisman, "That hair of yours looks particularly tasty today... mind letting me have a taste?~")
+                .Dialogue(DialogueType.PlayerTalisman, "Alright, just stand here... what kinda cut can my belly and I do for you today?"))
 
             .NPC(NPCID.DD2Bartender, nameof(NPCID.DD2Bartender), npc => npc
                 .Tags(EntityTags.Male | EntityTags.TownNPC)
@@ -158,31 +209,16 @@ namespace VoreMod.Plugins
 
         #region Vanity
             .Item(ItemID.TheBrideDress, nameof(ItemID.TheBrideDress), item => item
-                .Sprite(SpriteType.Belly, "Clothing/WeddingDress_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY)
-                    .Frames(15)
-                    .ColorMode(ColorMode.Skin)
-                )
                 .Sprite(SpriteType.Belly, "Clothing/WeddingDress_Belly_Overlay", sprite => sprite
-                    .Layout(SpriteLayout.SizeY)
-                    .Frames(15)
-                    .ColorMode(ColorMode.Dye)
-                )
-            )
+                    .Layout(SpriteLayout.SizeY).Frames(15).Offset(14f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Dye)))
+
             .Item(ItemID.HuntressAltShirt, nameof(ItemID.HuntressAltShirt), item => item
                 .Sprite(SpriteType.Belly, "Clothing/RedRidingDress_Belly_Overlay", sprite => sprite
-                    .Layout(SpriteLayout.SizeY)
-                    .Frames(15)
-                    .ColorMode(ColorMode.Dye)
-                )
-            )
+                    .Layout(SpriteLayout.SizeY).Frames(15).Offset(14f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Dye)))
+
             .Item(ItemID.PrincessDress, nameof(ItemID.PrincessDress), item => item
                 .Sprite(SpriteType.Belly, "Clothing/PrincessDressClothier_Belly_Overlay", sprite => sprite
-                    .Layout(SpriteLayout.SizeY)
-                    .Frames(15)
-                    .ColorMode(ColorMode.Dye)
-                )
-            );
+                    .Layout(SpriteLayout.SizeY).Frames(15).Offset(14f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Dye)));
         #endregion
     }
 }

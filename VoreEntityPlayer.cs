@@ -19,7 +19,7 @@ namespace VoreMod
         StatePlayer playerBackup;
 
         List<VoreSprite> cachedSprites = new List<VoreSprite>(new VoreSprite[] {
-            new VoreSprite.Builder(new VoreSprite(nameof(VoreMod) + "/Common/Belly2", SpriteType.Belly)).Layout(SpriteLayout.SizeY).Frames(15).Offset(12f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Skin)
+            new VoreSprite.Builder(new VoreSprite(nameof(VoreMod) + "/Common/Belly2", SpriteType.Belly)).Layout(SpriteLayout.SizeY).Frames(15).Offset(14f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Skin)
         });
 
         public VoreEntityPlayer(Player player)
@@ -68,7 +68,7 @@ namespace VoreMod
 
         public override void Damage(VoreEntity damager, int damage, float knockback)
         {
-            PlayerDeathReason reason = PlayerDeathReason.ByCustomReason(string.Format(GetRandomDeathMessage(Main.npc[damager.GetID()].type), this, damager));
+            PlayerDeathReason reason = PlayerDeathReason.ByCustomReason(GetRandomDeathMessage(damager));
             if (damager is VoreEntityPlayer)
                 GetPlayer().Hurt(reason, damage, damager.GetDirection(), true);
             if (damager is VoreEntityNPC)
@@ -146,33 +146,19 @@ namespace VoreMod
             return new CharmEffects();
         }
 
-        private string GetRandomDeathMessage(int predType)
+        private string GetRandomDeathMessage(VoreEntity pred)
         {
             WeightedRandom<string> msgs = new WeightedRandom<string>();
-            msgs.Add("{0} was gurgled by {1}.");
-            msgs.Add("{1} churned {0} into stomach soup.");
-            msgs.Add("{0} is just padding on {1}'s body.");
-            msgs.Add("{1} devoured {0} whole.");
-            msgs.Add("{0} was digested by {1}.");
-            msgs.Add("{1} found {0} delicious.");
-            if (predType == NPCID.Stylist)
+            if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.DigestedPlayer, pred), pred, this))
             {
-                msgs.Add("{1} let {0} marinate for a while in her stomach acids.");
-                msgs.Add("{0} got a free 'cut courtesy of {1}'s gut.");
-                msgs.Add("{1} just couldn't resist {0}'s delectable hair.");
+                msgs.Add("{1} was gurgled by {0}.");
+                msgs.Add("{0} churned {1} into stomach soup.");
+                msgs.Add("{1} is just padding on {0}'s body.");
+                msgs.Add("{0} devoured {1} whole.");
+                msgs.Add("{1} was digested by {0}.");
+                msgs.Add("{0} found {1} delicious.");
             }
-            if (predType == NPCID.Mechanic)
-            {
-                msgs.Add("{1} swallowed up {0} like a big, filling spaghetti wire.");
-                msgs.Add("{0} got {1}'s stomach too wired up.");
-            }
-            if (predType == NPCID.PartyGirl)
-            {
-                msgs.Add("{1} stuffed herself like a Pigronata with {0}.");
-                msgs.Add("{0} spent too long at the party in {1}'s belly.");
-                msgs.Add("{1} gobbled up {0} like a big birthday cake.");
-            }
-            return msgs.Get();
+            return string.Format(msgs.Get(), pred, this);
         }
 
         public override EntityTags GetTags()

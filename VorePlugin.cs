@@ -72,6 +72,15 @@ namespace VoreMod
             return null;
         }
 
+        public List<VoreDialogue> GetDialogues(DialogueType type, VoreEntity entity)
+        {
+            if (!(entity is VoreEntityNPC)) return null;
+            Terraria.NPC npc = (entity as VoreEntityNPC).GetNPC();
+            NPC modNPC = npcs.Find(n => n.Is(npc));
+            if (modNPC != null) return modNPC.GetDialogues(type);
+            return null;
+        }
+
         public class Builder
         {
             VorePlugin plugin;
@@ -117,6 +126,7 @@ namespace VoreMod
             CharmEffects? charmEffects;
 
             Dictionary<SpriteType, List<VoreSprite>> sprites = new Dictionary<SpriteType, List<VoreSprite>>();
+            Dictionary<DialogueType, List<VoreDialogue>> dialogues = new Dictionary<DialogueType, List<VoreDialogue>>();
 
             public NPC(VorePlugin plugin, string name, int? vanillaType)
             {
@@ -156,6 +166,8 @@ namespace VoreMod
 
             public List<VoreSprite> GetSprites(SpriteType type) => sprites.ContainsKey(type) ? sprites[type] : null;
 
+            public List<VoreDialogue> GetDialogues(DialogueType type) => dialogues.ContainsKey(type) ? dialogues[type] : null;
+
             public class Builder
             {
                 NPC npc;
@@ -187,6 +199,20 @@ namespace VoreMod
                         npc.sprites[type] = list;
                     }
                     list.Add(build(new VoreSprite.Builder(new VoreSprite(path, type))));
+                    return this;
+                }
+
+                public Builder Dialogue(DialogueType type, string text) => Dialogue(type, text, dialogue => dialogue);
+
+                public Builder Dialogue(DialogueType type, string text, System.Func<VoreDialogue.Builder, VoreDialogue> build)
+                {
+                    List<VoreDialogue> list = npc.dialogues.ContainsKey(type) ? npc.dialogues[type] : null;
+                    if (list == null)
+                    {
+                        list = new List<VoreDialogue>();
+                        npc.dialogues[type] = list;
+                    }
+                    list.Add(build(new VoreDialogue.Builder(new VoreDialogue(type, text))));
                     return this;
                 }
 

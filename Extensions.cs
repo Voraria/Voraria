@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Utilities;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -40,6 +41,18 @@ namespace VoreMod
         {
             if (self.Any()) return self.Max(selector);
             return defaultValue;
+        }
+
+        public static void AddAll(this WeightedRandom<string> self, List<VoreDialogue> dialogues, VoreEntity pred, VoreEntity prey)
+        {
+            foreach (VoreDialogue dialogue in dialogues) self.Add(dialogue.GetText(pred, prey), dialogue.GetWeight());
+        }
+
+        public static bool TryAddAll(this WeightedRandom<string> self, List<VoreDialogue> dialogues, VoreEntity pred, VoreEntity prey)
+        {
+            if (dialogues == null || dialogues.Count == 0) return false;
+            self.AddAll(dialogues, pred, prey);
+            return true;
         }
     }
 }

@@ -165,16 +165,9 @@ namespace VoreMod
             return VoreMod.GetPluginSprites(type, GetNPC());
         }
 
-        public override int GetStruggleBonus(VoreEntity pred) => npc.modNPC is Succubus ? int.MaxValue : (Main.expertMode ? npc.defDamage / 3 : npc.defDamage);
+        public override int GetStruggleBonus(VoreEntity pred) => (int)System.Math.Round((npc.modNPC is Succubus ? int.MaxValue : (Main.expertMode ? npc.defDamage / 3 : npc.defDamage)) * GetLifeRatio());
 
         public override int GetEscapeLimit(VoreEntity prey) => (int)System.Math.Round((Main.expertMode ? npc.defDefense * 3 : npc.defDefense * 10) * GetLifeRatio());
-
-        public override bool ShouldDigest(VoreEntity prey)
-        {
-            if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
-                return true;
-            return base.ShouldDigest(prey);
-        }
 
         public override bool IsHostileTo(VoreEntity other)
         {

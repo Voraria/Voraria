@@ -78,7 +78,7 @@ namespace VoreMod
             }
         }
 
-        public static EntityTags? GetPluginTags(Terraria.NPC npc)
+        public static EntityTags? GetPluginTags(NPC npc)
         {
             foreach (VorePlugin plugin in GetValidPlugins())
             {
@@ -88,7 +88,7 @@ namespace VoreMod
             return null;
         }
 
-        public static CharmEffects? GetPluginCharmEffects(Terraria.NPC npc)
+        public static CharmEffects? GetPluginCharmEffects(NPC npc)
         {
             foreach (VorePlugin plugin in GetValidPlugins())
             {
@@ -98,7 +98,7 @@ namespace VoreMod
             return null;
         }
 
-        public static List<VoreSprite> GetPluginSprites(SpriteType type, Terraria.NPC npc)
+        public static List<VoreSprite> GetPluginSprites(SpriteType type, NPC npc)
         {
             foreach (VorePlugin plugin in GetValidPlugins())
             {
@@ -108,12 +108,22 @@ namespace VoreMod
             return null;
         }
 
-        public static List<VoreSprite> GetPluginSprites(SpriteType type, Terraria.Item item)
+        public static List<VoreSprite> GetPluginSprites(SpriteType type, Item item)
         {
             foreach (VorePlugin plugin in GetValidPlugins())
             {
                 List<VoreSprite> sprites = plugin.GetSprites(type, item);
                 if (sprites != null) return sprites;
+            }
+            return null;
+        }
+
+        public static List<VoreDialogue> GetPluginDialogues(DialogueType type, VoreEntity entity)
+        {
+            foreach (VorePlugin plugin in GetValidPlugins())
+            {
+                List<VoreDialogue> dialogues = plugin.GetDialogues(type, entity);
+                if (dialogues != null) return dialogues;
             }
             return null;
         }
