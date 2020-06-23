@@ -223,7 +223,7 @@ namespace VoreMod
         {
             struggleCounter = 0;
 
-            bool escape = !GetPredator().IsHostileTo(this) && charms.hunger == 0;
+            bool escape = VoreConfig.Instance.DebugNoStruggle || (!VoreConfig.Instance.TweakAlwaysStruggle && !GetPredator().IsHostileTo(this) && charms.hunger == 0);
 
             if (!escape)
             {

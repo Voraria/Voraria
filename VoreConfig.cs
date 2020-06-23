@@ -52,6 +52,12 @@ namespace VoreMod
         [DefaultValue(true)]
         public bool SoundsRegurgitatePuking;
 
+        [Header("Tweaks")]
+
+        [Label("Always struggle (even with friendly preds)")]
+        [DefaultValue(false)]
+        public bool TweakAlwaysStruggle;
+
         [Header("Debug")]
 
         [Label("Enable extra debug info")]
@@ -69,6 +75,9 @@ namespace VoreMod
         [Label("Disable prey capacity limit")]
         [DefaultValue(false)]
         public bool DebugNoPreyCapacityLimit;
+        [Label("Disable struggle checks (auto-success)")]
+        [DefaultValue(false)]
+        public bool DebugNoStruggle;
     }
 
     public class VoreTagList
