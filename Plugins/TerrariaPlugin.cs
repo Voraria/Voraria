@@ -51,14 +51,14 @@ namespace VoreMod.Plugins
             .NPC(NPCID.Guide, nameof(NPCID.Guide), npc => npc
                 .Tags(EntityTags.Male | EntityTags.TownNPC)
                 .Sprite(SpriteType.Belly, "TownNPCs/Guide_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
-                .Dialogue(DialogueType.DigestedPlayer, "{Pred} swallowed up {Prey} like a big, filling spaghetti wire.")
-                .Dialogue(DialogueType.DigestedPlayer, "{Prey} got {Pred}'s stomach too wired up."))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
 
             .NPC(NPCID.Mechanic, nameof(NPCID.Mechanic), npc => npc
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
                 .Sprite(SpriteType.Belly, "TownNPCs/Mechanic_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+                .Dialogue(DialogueType.DigestedPlayer, "{Pred} swallowed up {Prey} like a big, filling spaghetti wire.")
+                .Dialogue(DialogueType.DigestedPlayer, "{Prey} got {Pred}'s stomach too wired up."))
 
             .NPC(NPCID.Nurse, nameof(NPCID.Nurse), npc => npc
                 .Tags(EntityTags.Female | EntityTags.TownNPC)
