@@ -1,10 +1,10 @@
 
 namespace VoreMod
 {
-    public enum ColorMode
-    {
-        Default,
-        Skin,
-        Dye,
-    }
+	public enum ColorMode
+	{
+		Default,
+		Skin,
+		Dye,
+	}
 }

@@ -3,8 +3,8 @@ using Terraria.ModLoader;
 
 namespace VoreMod.Buffs
 {
-    public class CharmManaGoldBuff : CharmManaBuffBase
-    {
-        public override ItemTier Tier => ItemTier.GoldPlatinum;
-    }
+	public class CharmManaGoldBuff : CharmManaBuffBase
+	{
+		public override ItemTier Tier => ItemTier.GoldPlatinum;
+	}
 }

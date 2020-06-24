@@ -1,11 +1,11 @@
 
 namespace VoreMod
 {
-    public enum SpriteType
-    {
-        None,
-        Belly,
-        Balls,
-        Breasts,
-    }
+	public enum SpriteType
+	{
+		None,
+		Belly,
+		Balls,
+		Breasts,
+	}
 }

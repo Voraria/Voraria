@@ -9,13 +9,13 @@ columns.shift()
 
 const tags = {}
 for (const column of columns) {
-    tags[column] = []
+	tags[column] = []
 }
 for (const line of lines) {
-    const cells = line.split(',')
-    for (let i = 0; i < columns.length; i++) {
-        if (cells[i + 2]) tags[columns[i]].push({ name: cells[0], id: parseInt(cells[1]) })
-    }
+	const cells = line.split(',')
+	for (let i = 0; i < columns.length; i++) {
+		if (cells[i + 2]) tags[columns[i]].push({ name: cells[0], id: parseInt(cells[1]) })
+	}
 }
 
 const code = `
@@ -24,21 +24,21 @@ using Terraria.ID;
 using static Terraria.ID.NPCID;
 
 namespace VoreMod {
-    public static class EntityTagLists
-    {
+	public static class EntityTagLists
+	{
 ${Object.keys(tags).map(tag => `
-        public static bool Is${tag.replace(/\s+/g, '')}(int npcID)
-        {
+		public static bool Is${tag.replace(/\s+/g, '')}(int npcID)
+		{
 ${tags[tag].length ? `
-            switch(npcID)
-            {
-${tags[tag].map(pair => `                case ${pair.name && pair.id < 580 ? pair.name : pair.id}:`).join('\n')}
-                    return true;
-            }
+			switch(npcID)
+			{
+${tags[tag].map(pair => `				case ${pair.name && pair.id < 580 ? pair.name : pair.id}:`).join('\n')}
+					return true;
+			}
 ` : ``}
-            return false;
-        }`).join('\n')}
-    }
+			return false;
+		}`).join('\n')}
+	}
 }
 `
 

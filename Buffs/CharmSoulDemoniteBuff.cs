@@ -3,8 +3,8 @@ using Terraria.ModLoader;
 
 namespace VoreMod.Buffs
 {
-    public class CharmSoulDemoniteBuff : CharmSoulBuffBase
-    {
-        public override ItemTier Tier => ItemTier.DemoniteCrimtane;
-    }
+	public class CharmSoulDemoniteBuff : CharmSoulBuffBase
+	{
+		public override ItemTier Tier => ItemTier.DemoniteCrimtane;
+	}
 }

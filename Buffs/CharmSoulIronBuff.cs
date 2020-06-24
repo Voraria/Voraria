@@ -3,8 +3,8 @@ using Terraria.ModLoader;
 
 namespace VoreMod.Buffs
 {
-    public class CharmSoulIronBuff : CharmSoulBuffBase
-    {
-        public override ItemTier Tier => ItemTier.IronLead;
-    }
+	public class CharmSoulIronBuff : CharmSoulBuffBase
+	{
+		public override ItemTier Tier => ItemTier.IronLead;
+	}
 }

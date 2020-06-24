@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoreMod", "VoreMod.csproj", "{6C193E2F-DE04-47AC-A0E1-A0BCA130BFC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoreMod", "VoreMod.csproj", "{11F10E13-5367-44E6-8DBB-5A0B1E8B437E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C193E2F-DE04-47AC-A0E1-A0BCA130BFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C193E2F-DE04-47AC-A0E1-A0BCA130BFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C193E2F-DE04-47AC-A0E1-A0BCA130BFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C193E2F-DE04-47AC-A0E1-A0BCA130BFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F10E13-5367-44E6-8DBB-5A0B1E8B437E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F10E13-5367-44E6-8DBB-5A0B1E8B437E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F10E13-5367-44E6-8DBB-5A0B1E8B437E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F10E13-5367-44E6-8DBB-5A0B1E8B437E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3C2CDA74-66F0-4DB6-8B44-BA5CA3869F8C}
+		SolutionGuid = {C95D8BF6-92BF-474B-97ED-A42FE7CB00CF}
 	EndGlobalSection
 EndGlobal

@@ -3,8 +3,8 @@ using Terraria.ModLoader;
 
 namespace VoreMod.Buffs
 {
-    public class CharmManaSilverBuff : CharmManaBuffBase
-    {
-        public override ItemTier Tier => ItemTier.SilverTungsten;
-    }
+	public class CharmManaSilverBuff : CharmManaBuffBase
+	{
+		public override ItemTier Tier => ItemTier.SilverTungsten;
+	}
 }
