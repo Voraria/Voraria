@@ -128,17 +128,10 @@ namespace VoreMod
             Regurgitate(prey);
         }
 
-<<<<<<< HEAD
 		public virtual void Dispose(VoreEntity prey)
 		{
 			DisposePrey(prey);
 		}
-=======
-        public void Dispose(VoreEntity prey)
-        {
-            DisposePrey(prey);
-        }
->>>>>>> 296fc7b78919d02bfb84d62e82f64342c99a8b79
 
         public void Digest(VoreEntity prey)
         {
@@ -157,7 +150,6 @@ namespace VoreMod
             return false;
         }
 
-<<<<<<< HEAD
 		public void Death()
 		{
 			foreach (VoreEntity prey in GetAllPrey(true))
@@ -172,7 +164,7 @@ namespace VoreMod
 					Regurgitate(prey);
 				}
 			}
-			// if (IsSwallowed()) pred.Regurgitate(this);
+			if (IsSwallowed()) pred.Regurgitate(this);
 		}
 
 		public void ApplyCharm(CharmEffect effect, ItemTier tier)
@@ -355,7 +347,7 @@ namespace VoreMod
 			noiseCounter = 0;
 			struggleCounter = 0;
 		}
-=======
+
         public void Death()
         {
             foreach (VoreEntity prey in GetAllPrey(true))
@@ -553,7 +545,6 @@ namespace VoreMod
             noiseCounter = 0;
             struggleCounter = 0;
         }
->>>>>>> 296fc7b78919d02bfb84d62e82f64342c99a8b79
 
         private void AddPrey(VoreEntity prey)
         {
@@ -585,7 +576,6 @@ namespace VoreMod
             prey.OnRegurgitatedBy(this);
         }
 
-<<<<<<< HEAD
 		private void DisposePrey(VoreEntity prey)
 		{
 			prey.graceCounter = 30;
@@ -603,19 +593,6 @@ namespace VoreMod
 				prey.SetLife(1);
 				prey.Damage(this, 1, 0f);
 			}
-=======
-        private void DisposePrey(VoreEntity prey)
-        {
-            prey.graceCounter = 30;
-            prey.RestoreState();
-            prey.SetPosition(GetDigestLocation());
-            PlaySound(GetDisposalNoise());
-            RemovePrey(prey);
-            prey.OnDisposedBy(this);
-            prey.SetLife(1);
-            prey.Damage(this, 1, 0f);
->>>>>>> 296fc7b78919d02bfb84d62e82f64342c99a8b79
-
             int soulChance = ((int)charms.soul + (int)prey.charms.soul) * 10;
             if (Main.hardMode && Main.rand.Next(100) < soulChance)
             {
