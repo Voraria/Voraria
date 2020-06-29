@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System.Collections.Generic;
 using VoreMod.NPCs.VoreMod.TownNPCs;
+using System;
 
 namespace VoreMod
 {
@@ -202,6 +203,18 @@ namespace VoreMod
 
 		public override float GetScale() => EntityTagLists.IsEye(npc.type) || EntityTagLists.IsSlime(npc.type) ? 1f + GetBellyRatio() * 25f / npc.width : 1f;
 
+		public override void Dispose(VoreEntity prey)
+		{
+			GetNPC().GetGlobalNPC<VoreNPC>().hasEatenSomeone = true;
+			GetNPC().GetGlobalNPC<VoreNPC>().storedPredStatsMult += Math.Max(0.0125f, ((float)prey.GetLifeMax() / (float)GetLifeMax()) / 15f);
+			if (Main.netMode != NetmodeID.SinglePlayer)
+			{
+				NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
+			}
+			npc.netUpdate = true;
+			base.Dispose(prey);
+		}
+
 		public override EntityTags GetTags()
 		{
 			EntityTags tags = EntityTags.None;
@@ -238,7 +251,7 @@ namespace VoreMod
 			switch (npc.type)
 			{
 				case NPCID.DungeonGuardian:
-				// case NPCID.CultistTablet:
+				case NPCID.CultistTablet:
 				case NPCID.PirateShip:
 				case NPCID.PirateShipCannon:
 				case NPCID.ForceBubble:

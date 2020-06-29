@@ -1679,6 +1679,7 @@ namespace VoreMod {
 
 			switch(npcID)
 			{
+				case BurningSphere:
 				case ChaosBall:
 				case WaterSphere:
 				case SpikeBall:
