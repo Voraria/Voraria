@@ -3,13 +3,13 @@ using Terraria.Utilities;
 
 namespace VoreMod
 {
-
 	public class VoreDialogue
 	{
 		DialogueType type;
 		string text;
 		VoreType voreType = VoreType.All;
 		double weight = 1;
+		DialogueTags tags = DialogueTags.None;
 
 		public VoreDialogue(DialogueType type, string text)
 		{
@@ -24,6 +24,8 @@ namespace VoreMod
 		public VoreType GetVoreType() => voreType;
 
 		public double GetWeight() => weight;
+
+		public DialogueTags GetTags() => tags;
 
 		public class Builder
 		{
@@ -46,7 +48,14 @@ namespace VoreMod
 				return this;
 			}
 
+			public Builder Tags(params DialogueTags[] tags)
+			{
+				foreach (DialogueTags tag in tags) dialogue.tags |= tag;
+				return this;
+			}
+
 			public static implicit operator VoreDialogue(Builder builder) => builder.dialogue;
 		}
 	}
+
 }
