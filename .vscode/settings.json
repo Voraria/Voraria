@@ -4,5 +4,8 @@
 		"obj/**": true,
 		"Properties/**": true,
 		".vs/**": true
-	}
+	},
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"diffEditor.ignoreTrimWhitespace": true
 }

@@ -193,7 +193,7 @@ namespace VoreMod
 
 			if (entity.IsSwallowedBy(player))
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerVored, npc), player, npc))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerVored, npc, entity.GetDialogueTags()), player, npc))
 				{
 					msgs.Add("Hey! " + player + "! Can you hear me out there?");
 					msgs.Add("My body is yours to use as you see fit!");
@@ -202,7 +202,7 @@ namespace VoreMod
 				}
 				if (entity.IsBeingDigested())
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerDigesting, npc), player, npc))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerDigesting, npc, entity.GetDialogueTags()), player, npc))
 					{
 						msgs.Add("Yes! Yes! Gurgle me to nothing!");
 						msgs.Add("Consume me like the meat I am!");
@@ -211,7 +211,7 @@ namespace VoreMod
 				}
 				else
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerNonFatal, npc), player, npc))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerNonFatal, npc, entity.GetDialogueTags()), player, npc))
 					{
 						msgs.Add("Snug fit, but I'll make it work.");
 						msgs.Add("It's so tight, and slimy...");
@@ -221,7 +221,7 @@ namespace VoreMod
 			}
 			else if (player.IsSwallowedBy(npc))
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.VoredPlayer, npc), npc, player))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.VoredPlayer, npc, entity.GetDialogueTags()), npc, player))
 				{
 					msgs.Add("Oh god, you tasted so good going down!");
 					msgs.Add("I love your flavor. So sweet!");
@@ -230,7 +230,7 @@ namespace VoreMod
 				}
 				if (player.IsBeingDigested())
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.DigestingPlayer, npc), npc, player))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.DigestingPlayer, npc, entity.GetDialogueTags()), npc, player))
 					{
 						msgs.Add("You're about to be nothing but fat on my gut and thighs.");
 						msgs.Add("Good night, my little gut slave. It'll all be over soon...");
@@ -239,7 +239,7 @@ namespace VoreMod
 				}
 				else
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.NonFatalPlayer, npc), npc, player))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.NonFatalPlayer, npc, entity.GetDialogueTags()), npc, player))
 					{
 						msgs.Add("Are you getting comfortable in there?");
 						msgs.Add("Just lay back and try to relax. Maybe take a nap?");
@@ -249,20 +249,20 @@ namespace VoreMod
 			}
 			else if (entity.IsSwallowed())
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherVored, npc), entity.GetPredator(), entity))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherVored, npc, entity.GetDialogueTags()), entity.GetPredator(), entity))
 				{
 
 				}
 				if (entity.IsBeingDigested())
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherDigesting, npc), entity.GetPredator(), entity))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherDigesting, npc, entity.GetDialogueTags()), entity.GetPredator(), entity))
 					{
 
 					}
 				}
 				else
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherNonFatal, npc), entity.GetPredator(), entity))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.OtherNonFatal, npc, entity.GetDialogueTags()), entity.GetPredator(), entity))
 					{
 
 					}
@@ -270,7 +270,7 @@ namespace VoreMod
 			}
 			else if (entity.HasSwallowedAny())
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.VoredOther, npc), npc, player))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.VoredOther, npc, entity.GetDialogueTags()), npc, player))
 				{
 					msgs.Add("Man, I'm so full!");
 					msgs.Add("That was delicious.");
@@ -278,14 +278,14 @@ namespace VoreMod
 				}
 				if (entity.IsDigestingAny())
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.DigestingOther, npc), npc, player))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.DigestingOther, npc, entity.GetDialogueTags()), npc, player))
 					{
 
 					}
 				}
 				else
 				{
-					if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.NonFatalOther, npc), npc, player))
+                    if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.NonFatalOther, npc, entity.GetDialogueTags()), npc, player))
 					{
 
 					}
@@ -293,7 +293,7 @@ namespace VoreMod
 			}
 			else if (Main.LocalPlayer.HeldItem.modItem is TalismanBase)
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerTalisman, npc), npc, player))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerTalisman, npc, entity.GetDialogueTags()), npc, player))
 				{
 					msgs.Add("Oh my, is that a talisman? Looking for a place to nap, or do you want the full tour?");
 					msgs.Add("Is my little belly pet ready to go?");
@@ -302,13 +302,17 @@ namespace VoreMod
 			}
 			else if (Main.LocalPlayer.HeldItem.modItem is AmuletBase)
 			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerAmulet, npc), player, npc))
+                if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerAmulet, npc, entity.GetDialogueTags()), player, npc))
 				{
 					msgs.Add("An amulet, huh? I see that hungry look in your eyes...");
 					msgs.Add("If it's my time to go, getting eaten by you is far from the worst way to do it.");
 					msgs.Add("I'm ready; please eat me!");
 				}
 			}
+            if (msgs.elements.Count == 0)
+            {
+                msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.Chat, npc, entity.GetDialogueTags()), npc, player);
+            }
 			if (msgs.elements.Count > 0) chat = msgs.Get();
 		}
 	}

@@ -131,11 +131,11 @@ namespace VoreMod
 			return null;
 		}
 
-		public static List<VoreDialogue> GetPluginDialogues(DialogueType type, VoreEntity entity)
+        public static List<VoreDialogue> GetPluginDialogues(DialogueType type, VoreEntity entity, DialogueTags tags)
 		{
 			foreach (VorePlugin plugin in GetValidPlugins())
 			{
-				List<VoreDialogue> dialogues = plugin.GetDialogues(type, entity);
+                List<VoreDialogue> dialogues = plugin.GetDialogues(type, entity, tags);
 				if (dialogues != null) return dialogues;
 			}
 			return null;
