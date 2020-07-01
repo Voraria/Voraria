@@ -166,6 +166,13 @@ namespace VoreMod
                 if (charm != null) player.GetEntity().ApplyCharm(charm.Effect, charm.Tier);
             }
         }
+
+        public override void PreUpdateBuffs()
+        {
+            VoreEntity entity = player.GetEntity();
+            if (entity.IsBeingDigested()) player.AddBuff(DigestingBuff.BuffType, 2);
+            if (entity.IsSwallowed() && !entity.IsBeingDigested()) player.AddBuff(SwallowedBuff.BuffType, 2);
+
 		}
 
 		public override void PostUpdateBuffs()
