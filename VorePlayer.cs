@@ -42,7 +42,7 @@ namespace VoreMod
 
 		private void NewKillMe(ILContext il)
 		{
-			ILCursor c = il.At(0);
+            ILCursor c = new ILCursor(il).Goto(0);
 			// Push the Player instance onto the stack
 			c.Emit(Ldarg_0);
 			// Call a delegate in C# code
@@ -58,6 +58,7 @@ namespace VoreMod
 		{
 			Player player = drawInfo.drawPlayer;
 			VoreEntity entity = player.GetEntity();
+            if (entity.IsSwallowed() && !entity.ShouldShowWhileSwallowed()) return;
 			if (!entity.HasSprites(type)) return;
 			foreach (VoreSprite sprite in entity.GetSprites(type))
 			{

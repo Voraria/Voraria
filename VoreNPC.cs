@@ -149,6 +149,7 @@ namespace VoreMod
 		public static void DrawLayer(NPC npc, SpriteBatch batch, Color drawColor, SpriteType type)
 		{
 			VoreEntity entity = npc.GetEntity();
+            if (entity.IsSwallowed() && !entity.ShouldShowWhileSwallowed()) return;
 			if (!entity.HasSprites(type)) return;
 			foreach (VoreSprite sprite in entity.GetSprites(type))
 			{
