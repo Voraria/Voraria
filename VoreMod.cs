@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static Mono.Cecil.Cil.OpCodes;
 
 namespace VoreMod
 {
@@ -54,6 +55,27 @@ namespace VoreMod
                 RegisterPlugin(new Plugins.CalamityModPlugin());
                 pluginsLoaded = true;
             }
+            ILEditingInitialize();
+        }
+
+        public static void ILEditingInitialize()
+        {
+            IL.Terraria.Player.KillMe += (instructionContext) =>
+            {
+                ILCursor c = new ILCursor(instructionContext).Goto(0);
+                // Push the Player instance and all other necessary variables onto the stack
+                c.Emit(Ldarg_0);
+                c.Emit(Ldarg_1);
+                c.Emit(Ldarg_2);
+                c.Emit(Ldarg_3);
+                // Call a delegate in C# code
+                c.EmitDelegate<Action<Player, PlayerDeathReason, double, int>>((player, reason, damage, hitDirection) =>
+                {
+                    player.GetModPlayer<VorePlayer>().KillMe(reason, damage, hitDirection);
+                });
+                // Insert a return command so that the normal code cannot run
+                c.Emit(Ret);
+            };
         }
 
         public override void Unload()

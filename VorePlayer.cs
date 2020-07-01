@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoMod.Cil;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
@@ -17,7 +16,6 @@ using VoreMod.Items;
 using VoreMod.Items.VoreMod.Amulets;
 using VoreMod.Items.VoreMod.Charms;
 using VoreMod.UI;
-using static Mono.Cecil.Cil.OpCodes;
 
 namespace VoreMod
 {
@@ -25,34 +23,13 @@ namespace VoreMod
     {
         public VoreEntity entity;
 
-        public PlayerDeathReason lastHitReason;
-        public double lastHitDamage;
-        public int lastHitDirection;
         public bool lastHitFromPVP;
+
+        public bool wasDigested;
 
         public static PlayerLayer BellyLayer = null;
 
         List<CharmSlot> charmSlots = new List<CharmSlot>();
-
-        public override bool Autoload(ref string name)
-        {
-            IL.Terraria.Player.KillMe += NewKillMe;
-            return base.Autoload(ref name);
-        }
-
-        private void NewKillMe(ILContext il)
-        {
-            ILCursor c = new ILCursor(il).Goto(0);
-            // Push the Player instance onto the stack
-            c.Emit(Ldarg_0);
-            // Call a delegate in C# code
-            c.EmitDelegate<Action<Player>>((player) =>
-            {
-                player.GetModPlayer<VorePlayer>().KillMe();
-            });
-            // Insert a return command so that the normal code cannot run
-            c.Emit(Ret);
-        }
 
         public static void DrawLayer(PlayerDrawInfo drawInfo, SpriteType type)
         {
@@ -160,6 +137,7 @@ namespace VoreMod
         {
             base.ResetEffects();
             player.GetEntity().ResetTick();
+            wasDigested = false;
 
             foreach (CharmSlot slot in charmSlots)
             {
@@ -184,26 +162,34 @@ namespace VoreMod
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            lastHitReason = damageSource;
-            lastHitDamage = damage;
-            lastHitDirection = hitDirection;
             lastHitFromPVP = pvp;
+
+            playSound = !wasDigested;
+            genGore = !wasDigested;
+
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
-        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            player.GetEntity().Death();
+            playSound = !wasDigested;
+            genGore = !wasDigested;
+
+            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
 
-
-        public void KillMe()
+        /*
+		Hey, just a little word of warning for you:
+		If you touch this method or any of the methods relating to it without consulting me...
+		...your life shall come to a swift and abrupt end at the hands of the Corporation.
+		Makes sense, yeah? Good, now leave me to my work.
+		I have a lot of Stylist feeding to do.
+		The best girl deserves the best meals.
+		 - the debatably-predatory Sign Painter
+		*/
+        public void KillMe(PlayerDeathReason damageSource, double dmg, int hitDirection)
         {
-            PlayerDeathReason damageSource = lastHitReason;
-            double dmg = lastHitDamage;
-            int hitDirection = lastHitDirection;
             bool pvp = lastHitFromPVP;
-            bool isPlayerFood = player.GetEntity().IsSwallowed();
             if (player.dead)
             {
                 return;
@@ -213,6 +199,11 @@ namespace VoreMod
             if (!PlayerHooks.PreKill(player, dmg, hitDirection, pvp, ref playSound, ref genGore, ref damageSource))
             {
                 return;
+            }
+            if (wasDigested)
+            {
+                playSound = false;
+                genGore = false;
             }
             if (pvp)
             {
@@ -241,11 +232,11 @@ namespace VoreMod
                 player.trashItem.SetDefaults();
                 if (player.difficulty == 0)
                 {
-                    if (!isPlayerFood)
+                    for (int k = 0; k < 59; k++)
                     {
-                        for (int k = 0; k < 59; k++)
+                        if (player.inventory[k].stack > 0 && ((player.inventory[k].type >= ItemID.LargeAmethyst && player.inventory[k].type <= ItemID.LargeDiamond) || player.inventory[k].type == ItemID.LargeAmber))
                         {
-                            if (player.inventory[k].stack > 0 && ((player.inventory[k].type >= ItemID.LargeAmethyst && player.inventory[k].type <= ItemID.LargeDiamond) || player.inventory[k].type == ItemID.LargeAmber))
+                            if (!wasDigested || !VoreConfig.Instance.TweakItemsAreFood)
                             {
                                 int num5 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, player.inventory[k].type);
                                 Main.item[num5].netDefaults(player.inventory[k].netID);
@@ -258,30 +249,30 @@ namespace VoreMod
                                 Main.item[num5].newAndShiny = false;
                                 if (Main.netMode == 1)
                                 {
-                                    NetMessage.SendData(21, -1, -1, null, num5);
+                                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, num5);
                                 }
-                                player.inventory[k].SetDefaults();
                             }
+                            player.inventory[k].SetDefaults();
                         }
                     }
                 }
                 else if (player.difficulty == 1)
                 {
-                    if (!isPlayerFood)
+                    if (!wasDigested || !VoreConfig.Instance.TweakItemsAreFood)
                         player.DropItems();
                     else
                         LoseDigestedItems();
                 }
                 else if (player.difficulty == 2)
                 {
-                    if (!isPlayerFood)
+                    if (!wasDigested || !VoreConfig.Instance.TweakItemsAreFood)
                         player.DropItems();
                     else
                         LoseDigestedItems();
                     player.KillMeForGood();
                 }
             }
-            if (!isPlayerFood && playSound)
+            if (!wasDigested && playSound)
             {
                 Main.PlaySound(SoundID.PlayerKilled, (int)player.position.X, (int)player.position.Y);
             }
@@ -291,13 +282,13 @@ namespace VoreMod
             player.headVelocity.X = (float)Main.rand.Next(-20, 21) * 0.1f + (float)(2 * hitDirection);
             player.bodyVelocity.X = (float)Main.rand.Next(-20, 21) * 0.1f + (float)(2 * hitDirection);
             player.legVelocity.X = (float)Main.rand.Next(-20, 21) * 0.1f + (float)(2 * hitDirection);
-            if (player.stoned || isPlayerFood || !genGore)
+            if (player.stoned || !genGore)
             {
                 player.headPosition = Vector2.Zero;
                 player.bodyPosition = Vector2.Zero;
                 player.legPosition = Vector2.Zero;
             }
-            if (!isPlayerFood && genGore)
+            if (!wasDigested && genGore)
             {
                 for (int j = 0; j < 100; j++)
                 {
@@ -344,8 +335,24 @@ namespace VoreMod
             {
                 player.respawnTimer = (int)((double)player.respawnTimer * 1.5);
             }
-            PlayerHooks.Kill(player, dmg, hitDirection, pvp, damageSource);
+            if (!wasDigested)
+                PlayerHooks.Kill(player, dmg, hitDirection, pvp, damageSource);
+            else
+            {
+                if (player.GetEntity().GetPredator() is VoreEntityNPC)
+                {
+                    NPC fatty = Main.npc[player.GetEntity().GetPredator().GetID()];
+                    if (fatty.type == NPCID.Stylist)
+                    {
+                        VoreWorld.storedPlayerSnacksStylist++;
+                    }
+                }
+
+                player.GetEntity().Death();
+            }
             player.immuneAlpha = 0;
+            if (wasDigested)
+                player.immuneAlpha = 255;
             player.palladiumRegen = false;
             player.iceBarrier = false;
             player.crystalLeaf = false;
@@ -366,8 +373,10 @@ namespace VoreMod
             {
                 if (!pvp)
                 {
-                    if (!isPlayerFood)
+                    if (!wasDigested || !VoreConfig.Instance.TweakItemsAreFood)
                         player.DropCoins();
+                    else
+                        LoseDigestedCoins();
                 }
                 else
                 {
@@ -375,7 +384,7 @@ namespace VoreMod
                     player.lostCoinString = Main.ValueToCoins(player.lostCoins);
                 }
             }
-            if (!isPlayerFood)
+            if (!wasDigested)
                 player.DropTombstone(coinsOwned, deathText, hitDirection);
             if (player.whoAmI == Main.myPlayer)
             {
@@ -387,6 +396,7 @@ namespace VoreMod
                 {
                 }
             }
+            wasDigested = false;
         }
 
         public void LoseDigestedItems()
@@ -401,7 +411,7 @@ namespace VoreMod
             int num6 = 0;
             for (int i = 0; i < 59; i++)
             {
-                if (player.inventory[i].type >= ItemID.CopperCoin && player.inventory[i].type <= ItemID.PlatinumCoin)
+                if (player.inventory[i].type >= 71 && player.inventory[i].type <= 74)
                 {
                     int num5 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, player.inventory[i].type);
                     int num4 = player.inventory[i].stack / 2;
@@ -411,25 +421,38 @@ namespace VoreMod
                     }
                     num4 = player.inventory[i].stack - num4;
                     player.inventory[i].stack -= num4;
-                    if (player.inventory[i].type == ItemID.CopperCoin)
+                    if (player.inventory[i].type == 71)
                     {
                         num6 += num4;
                     }
-                    if (player.inventory[i].type == ItemID.SilverCoin)
+                    if (player.inventory[i].type == 72)
                     {
                         num6 += num4 * 100;
                     }
-                    if (player.inventory[i].type == ItemID.GoldCoin)
+                    if (player.inventory[i].type == 73)
                     {
                         num6 += num4 * 10000;
                     }
-                    if (player.inventory[i].type == ItemID.PlatinumCoin)
+                    if (player.inventory[i].type == 74)
                     {
                         num6 += num4 * 1000000;
                     }
                     if (player.inventory[i].stack <= 0)
                     {
                         player.inventory[i] = new Item();
+                    }
+                    Main.item[num5].stack = num4;
+                    Main.item[num5].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
+                    Main.item[num5].velocity.X = (float)Main.rand.Next(-20, 21) * 0.2f;
+                    Main.item[num5].noGrabDelay = 100;
+                    Main.item[num5].TurnToAir();
+                    if (Main.netMode == 1)
+                    {
+                        NetMessage.SendData(21, -1, -1, null, num5);
+                    }
+                    if (i == 58)
+                    {
+                        Main.mouseItem = player.inventory[i].Clone();
                     }
                 }
             }

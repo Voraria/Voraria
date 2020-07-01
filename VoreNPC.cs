@@ -19,23 +19,69 @@ namespace VoreMod
 
         float cachedScale;
 
+        public bool hasEatenSomeone;
+        public bool storedStats;
+        public int storedPredHealth;
+        public int storedPredDamage;
+        public int storedPredDefense;
+        public float storedPredStatsMult;
+
         public override bool InstancePerEntity => true;
 
-        public override bool PreAI(NPC npc)
+        public override void SpawnNPC(int npc, int tileX, int tileY)
         {
-            if (npc.GetEntity().IsSwallowed()) return false;
-            foreach (VoreEntityPlayer player in npc.GetEntity().GetAllPrey(true).OfType<VoreEntityPlayer>())
-            {
-                player.SetPosition(player.swallowedLocation);
-                //player.GetPlayer().dead = true;
-            }
-            return base.PreAI(npc);
+            hasEatenSomeone = false;
+        }
+
+        public override void SetDefaults(NPC npc)
+        {
+
         }
 
         public override void ResetEffects(NPC npc)
         {
             base.ResetEffects(npc);
             npc.GetEntity().ResetTick();
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.GetEntity().IsSwallowed())
+                return false;
+
+            foreach (VoreEntityPlayer player in npc.GetEntity().GetAllPrey(true).OfType<VoreEntityPlayer>())
+            {
+                player.SetPosition(player.swallowedLocation);
+                //player.GetPlayer().dead = true;
+            }
+
+            return base.PreAI(npc);
+        }
+
+        public override void AI(NPC npc)
+        {
+            if (!storedStats)
+            {
+                storedStats = true;
+                storedPredHealth = npc.lifeMax;
+                storedPredDamage = npc.damage;
+                storedPredDefense = npc.defense;
+                storedPredStatsMult = 1f;
+
+                if (npc.type == NPCID.Stylist)
+                {
+                    storedPredStatsMult = VoreWorld.storedStatsMultStylist;
+                }
+            }
+
+            npc.lifeMax = (int)((float)storedPredHealth * storedPredStatsMult);
+            npc.defDamage = (int)((float)storedPredDamage * storedPredStatsMult);
+            npc.defDefense = (int)((float)storedPredDefense * storedPredStatsMult);
+
+            if (npc.type == NPCID.Stylist)
+            {
+                VoreWorld.storedStatsMultStylist = storedPredStatsMult;
+            }
         }
 
         public override void PostAI(NPC npc)
@@ -48,8 +94,20 @@ namespace VoreMod
             npc.GetEntity().UpdateTick();
         }
 
+        public override void TownNPCAttackStrength(NPC npc, ref int damage, ref float knockback)
+        {
+            float fullDamage = damage * storedPredStatsMult;
+            damage = (int)fullDamage;
+            float fullKB = knockback * storedPredStatsMult;
+            knockback = (int)fullKB;
+        }
+
         public override void NPCLoot(NPC npc)
         {
+            if (npc.type == NPCID.Stylist)
+            {
+                VoreWorld.storedStatsMultStylist = 1f;
+            }
             npc.GetEntity().Death();
             base.NPCLoot(npc);
         }
@@ -61,7 +119,12 @@ namespace VoreMod
 
         public override bool CheckActive(NPC npc)
         {
-            if (npc.GetEntity().IsSwallowed()) return false;
+            if (npc.GetEntity().IsSwallowed())
+                return false;
+
+            if (hasEatenSomeone)
+                return false;
+
             return base.CheckActive(npc);
         }
 
@@ -99,6 +162,12 @@ namespace VoreMod
 
         public override void ModifyHitNPC(NPC npc, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (target.type == NPCID.Stylist && VoreWorld.storedStatsMultStylist >= 2.00f && target.GetEntity().CanSwallow(npc))
+            {
+                damage = 0;
+                target.GetEntity().Swallow(npc);
+                return;
+            }
             if (target.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP") && target.GetEntity().CanSwallow(npc))
             {
                 damage = 0;
@@ -317,8 +386,10 @@ namespace VoreMod
             }
             if (msgs.elements.Count == 0)
             {
-                msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.Chat, npc, entity.GetDialogueTags()), npc, player);
-                msgs.Add(chat);
+                if (msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.Chat, npc, entity.GetDialogueTags()), npc, player))
+                {
+                    msgs.Add(chat);
+                }
             }
             if (msgs.elements.Count > 0) chat = msgs.Get();
         }

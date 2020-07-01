@@ -57,7 +57,9 @@ namespace VoreMod
         [Label("Always struggle (even with friendly preds)")]
         [DefaultValue(false)]
         public bool TweakAlwaysStruggle;
-
+        [Label("Predators digest dropped coins/items")]
+        [DefaultValue(false)]
+        public bool TweakItemsAreFood;
         [Label("Reenable monster gore")]
         [DefaultValue(false)]
         public bool TweakEnableGore;

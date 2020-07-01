@@ -33,7 +33,9 @@ namespace VoreMod.Plugins
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
 				.CharmEffects(new CharmEffects() { life = ItemTier.CopperTin, mana = ItemTier.SilverTungsten, acid = ItemTier.CopperTin, hunger = ItemTier.CopperTin })
 				.Sprite(SpriteType.Belly, "TownNPCs/Dryad_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f))
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} is now keeping the corruption off of {Pred}'s hips.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} was purified by {Pred}'s cleansing belly.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} has been gifted a life as dryad fat.")
@@ -76,7 +78,9 @@ namespace VoreMod.Plugins
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
 				.CharmEffects(new CharmEffects() { life = ItemTier.SilverTungsten, acid = ItemTier.CopperTin, hunger = ItemTier.CopperTin })
 				.Sprite(SpriteType.Belly, "TownNPCs/Nurse_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.OldMan, nameof(NPCID.OldMan), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
@@ -91,7 +95,9 @@ namespace VoreMod.Plugins
 			.NPC(NPCID.PartyGirl, nameof(NPCID.PartyGirl), npc => npc
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/PartyGirl_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f))
 				.Dialogue(DialogueType.DigestedPlayer, "{Pred} stuffed herself like a Pigronata with {Prey}.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} spent too long at the party in {Pred}'s belly.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Pred} gobbled up {Prey} like a big birthday cake.")
@@ -135,12 +141,16 @@ namespace VoreMod.Plugins
 			.NPC(NPCID.Steampunker, nameof(NPCID.Steampunker), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/Steampunker_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.Stylist, nameof(NPCID.Stylist), npc => npc
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/Stylist_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f))
 				.Dialogue(DialogueType.DigestedPlayer, "{Pred} let {Prey} marinate for a while in her stomach acids.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} got a free 'cut courtesy of {Pred}'s gut.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Pred} just couldn't resist {Prey}'s delectable hair.")
@@ -154,6 +164,12 @@ namespace VoreMod.Plugins
 				.Dialogue(DialogueType.VoredOther, "Oh, you want a haircut? Just sit in the chair, I'll do yours once I'm done with this one...")
 				.Dialogue(DialogueType.VoredOther, "Does this belly make my hair look bad? Give me an honest answer, I won't judge.")
 				.Dialogue(DialogueType.VoredOther, "Alright, just a minute, I'll be with you once my current client's done... what kinda cut do you want?")
+				.Dialogue(DialogueType.DigestingOther, "Go on, sit in the chair. Don't mind the rumbling, just giving another client a more...thorough cut.")
+				.Dialogue(DialogueType.DigestingOther, "Mmmf...alright, come here. I'll get that pesky hair off your head, have some dessert while I'm at it.")
+				.Dialogue(DialogueType.DigestingOther, "Give me a nice, quality belly rub to help with my previous client's cut, and your next cut's free. Sound good?")
+				.Dialogue(DialogueType.PlayerAmulet, "H-huh? Me? I mean...as long as my hair doesn't get too ruined, I guess it's okay.")
+				.Dialogue(DialogueType.PlayerAmulet, "Really? Right now? I just got a perm, your gut's gonna mess it all up!")
+				.Dialogue(DialogueType.PlayerAmulet, "...fiiiine, you can eat me...but if my hair gets digested, I'm blaming you!")
 				.Dialogue(DialogueType.PlayerTalisman, "Hey, your head looks a bit messy... howsabout a special kind of soak for that hair?~")
 				.Dialogue(DialogueType.PlayerTalisman, "Just a little off the top? Honey, stomach acid's gonna get you way more than that...")
 				.Dialogue(DialogueType.PlayerTalisman, "That hair of yours looks particularly tasty today... mind letting me have a taste?~")
