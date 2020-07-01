@@ -6,9 +6,9 @@ using VoreMod.Buffs;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-	public class CharmAcidSilver : CharmAcidBase<CharmAcidSilverBuff>
-	{
-		public override ItemTier Tier => ItemTier.SilverTungsten;
-		public override int Metal => ItemID.SilverBar;
-	}
+    public class CharmAcidSilver : CharmAcidBase
+    {
+        public override ItemTier Tier => ItemTier.SilverTungsten;
+        public override int Metal => ItemID.SilverBar;
+    }
 }

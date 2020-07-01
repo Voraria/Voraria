@@ -6,9 +6,9 @@ using VoreMod.Buffs;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-	public class CharmManaCrimtane : CharmManaBase<CharmManaDemoniteBuff>
-	{
-		public override ItemTier Tier => ItemTier.DemoniteCrimtane;
-		public override int Metal => ItemID.CrimtaneBar;
-	}
+    public class CharmManaCrimtane : CharmManaBase
+    {
+        public override ItemTier Tier => ItemTier.DemoniteCrimtane;
+        public override int Metal => ItemID.CrimtaneBar;
+    }
 }

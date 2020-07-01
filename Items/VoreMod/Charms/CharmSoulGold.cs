@@ -6,9 +6,9 @@ using VoreMod.Buffs;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-	public class CharmSoulGold : CharmSoulBase<CharmSoulGoldBuff>
-	{
-		public override ItemTier Tier => ItemTier.GoldPlatinum;
-		public override int Metal => ItemID.GoldBar;
-	}
+    public class CharmSoulGold : CharmSoulBase
+    {
+        public override ItemTier Tier => ItemTier.GoldPlatinum;
+        public override int Metal => ItemID.GoldBar;
+    }
 }

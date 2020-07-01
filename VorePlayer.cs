@@ -11,8 +11,12 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using VoreMod.Buffs;
 using VoreMod.Items;
 using VoreMod.Items.VoreMod.Amulets;
+using VoreMod.Items.VoreMod.Charms;
+using VoreMod.UI;
 using static Mono.Cecil.Cil.OpCodes;
 
 namespace VoreMod
@@ -27,6 +31,8 @@ namespace VoreMod
 		public bool lastHitFromPVP;
 
 		public static PlayerLayer BellyLayer = null;
+
+        List<CharmSlot> charmSlots = new List<CharmSlot>();
 
 		public override bool Autoload(ref string name)
 		{
@@ -90,6 +96,43 @@ namespace VoreMod
 			}
 		}
 
+        public override void Initialize()
+        {
+            foreach (CharmEffect value in Enum.GetValues(typeof(CharmEffect)))
+            {
+                if (value != CharmEffect.None && !charmSlots.Any(slot => slot.charm == value))
+                {
+                    charmSlots.Add(new CharmSlot(value));
+                }
+            }
+        }
+
+        public override TagCompound Save()
+        {
+            TagCompound tag = new TagCompound();
+            TagCompound charmSlotTag = new TagCompound();
+            foreach (CharmSlot slot in charmSlots) charmSlotTag.Add(slot.charm.ToString(), slot.Item);
+            tag.Add("charmSlots", charmSlotTag);
+            return tag;
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            if (tag.ContainsKey("charmSlots"))
+            {
+                TagCompound charmSlotTag = tag.GetCompound("charmSlots");
+                foreach (CharmSlot slot in charmSlots)
+                {
+                    if (charmSlotTag.ContainsKey(slot.charm.ToString())) slot.Item = charmSlotTag.Get<Item>(slot.charm.ToString());
+                }
+            }
+        }
+
+        public void DrawUI(SpriteBatch batch)
+        {
+            foreach (CharmSlot slot in charmSlots) slot.Draw(batch);
+        }
+
 		public override void ModifyDrawLayers(List<PlayerLayer> layers)
 		{
 			if (BellyLayer == null)
@@ -116,6 +159,13 @@ namespace VoreMod
 		{
 			base.ResetEffects();
 			player.GetEntity().ResetTick();
+
+            foreach (CharmSlot slot in charmSlots)
+            {
+                CharmBase charm = slot.Item.modItem as CharmBase;
+                if (charm != null) player.GetEntity().ApplyCharm(charm.Effect, charm.Tier);
+            }
+        }
 		}
 
 		public override void PostUpdateBuffs()
