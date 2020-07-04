@@ -14,8 +14,10 @@ namespace VoreMod.Plugins
                 .Tags(ET.Female, ET.TownNPC)
                 .CharmEffects(new CharmEffects() { life = ItemTier.CopperTin, acid = ItemTier.Hellstone, soul = ItemTier.Hellstone, hunger = ItemTier.CopperTin })
                 .Sprite(SpriteType.Belly, "TownNPCs/Succubus_Belly", sprite => sprite
-                    .Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11))
-                .Dialogue(DialogueType.Chat, "I could really go for a meal right now... You offering?")
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f))
+				.Dialogue(DialogueType.Chat, "I could really go for a meal right now... You offering?")
                 .Dialogue(DialogueType.Chat, "Man, I'm starving...")
                 .Dialogue(DialogueType.Chat, "In this world, it's eat or be eaten.")
                 .Dialogue(DialogueType.Chat, "So you interested in vore, or what?")

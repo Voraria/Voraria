@@ -54,6 +54,7 @@ namespace VoreMod.Plugins
 				.Dialogue(DialogueType.NonFatalPlayer, "There you go... take a nap, relax in the best lootin' bag there is.")
 				.Dialogue(DialogueType.NonFatalPlayer, "Yeah, that's right...take it easy, let my belly steal away your troubles for a while.~")
 				.Dialogue(DialogueType.NonFatalPlayer, "Fun fact: I've stolen a couple of really pricey things before, and now they're just belly fat. Just be glad you won't end up like those things.")
+				.Dialogue(DialogueType.PlayerAmulet, "You hungry over there, {Prey}? Could use a bit of practice with gettin' outta tight spaces...")
 				.Dialogue(DialogueType.PlayerTalisman, "You know, you smell good enough to eat...how about you let me \"steal\" you away for a little bit?~")
 				.Dialogue(DialogueType.PlayerTalisman, "Hey, you wanna help me practice swallowin' stuff? A thief's gotta do it more than you think...")
 				.Dialogue(DialogueType.PlayerTalisman, "The feeling of having someone in my gut is more priceless than any relic, I swear... mind gettin' in for a bit?")

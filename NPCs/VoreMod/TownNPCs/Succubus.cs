@@ -146,6 +146,8 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 
 			if (!npc.GetEntity().IsBeingDigested())
 				Main.PlaySound(SoundID.NPCDeath1);
+
+			VoreWorld.storedStatsMultSuccubus = 1f;
 		}
 
 		public override bool CanGoToStatue(bool toKingStatue)

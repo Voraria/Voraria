@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Terraria.ID;
 using Terraria.Utilities;
 
 namespace VoreMod
@@ -19,7 +20,11 @@ namespace VoreMod
 
 		public DialogueType GetDialogueType() => type;
 
-		public string GetText(VoreEntity pred, VoreEntity prey) => string.Format(text.Replace("{Pred}", "{0}").Replace("{Prey}", "{1}"), pred, prey);
+		public string GetText(VoreEntity pred, VoreEntity prey) => string.Format(text
+			.Replace("{Pred}", "{0}")
+			.Replace("{Prey}", "{1}")
+			.Replace("{Nurse}", DialogueHelpers.GetNPCName(NPCID.Nurse)),
+			pred, prey);
 
 		public VoreType GetVoreType() => voreType;
 
@@ -57,5 +62,4 @@ namespace VoreMod
 			public static implicit operator VoreDialogue(Builder builder) => builder.dialogue;
 		}
 	}
-
 }
