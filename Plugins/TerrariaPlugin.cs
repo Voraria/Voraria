@@ -12,7 +12,9 @@ namespace VoreMod.Plugins
 			.NPC(NPCID.ArmsDealer, nameof(NPCID.ArmsDealer), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/ArmsDealer_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.Clothier, nameof(NPCID.Clothier), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
@@ -40,7 +42,7 @@ namespace VoreMod.Plugins
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} was purified by {Pred}'s cleansing belly.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} has been gifted a life as dryad fat.")
 				.Dialogue(DialogueType.VoredOther, "The enemies of this world's purity cannot be allowed to continue. This one was quite tasty though.")
-				.Dialogue(DialogueType.VoredOther, $"[c/00FF00:*BURP!*]" + "Aha...excuse me. One cannot purify the world on an empty stomach!")
+				.Dialogue(DialogueType.VoredOther, $"[c/00CC00:*BURP!*]" + "Aha...excuse me. One cannot purify the world on an empty stomach!")
 				.Dialogue(DialogueType.VoredOther, "Yes, hero? Oh, this one? They were quite tasty, are you looking to join them?")
 				.Dialogue(DialogueType.PlayerTalisman, "Hmm... you know, it's been a long time since I've had a live meal...")
 				.Dialogue(DialogueType.PlayerTalisman, "Why is my stomach rumbling, you ask? I'm a tree nymph, we eat other creatures rather often.")
@@ -73,7 +75,6 @@ namespace VoreMod.Plugins
 					.Layout(SpriteLayout.SizeY)
 					.Frames(15)
 					.Offset(13f, 8f))
-				.Dialogue(DialogueType.DigestedPlayer, "{Pred} swallowed up {Prey} like a big, filling spaghetti wire.")
 				.Dialogue(DialogueType.DigestedPlayer, "{Prey} got {Pred}'s stomach too wired up."))
 
 			.NPC(NPCID.Nurse, nameof(NPCID.Nurse), npc => npc
@@ -92,7 +93,9 @@ namespace VoreMod.Plugins
 			.NPC(NPCID.Painter, nameof(NPCID.Painter), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/Painter_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(1f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.PartyGirl, nameof(NPCID.PartyGirl), npc => npc
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
@@ -119,15 +122,15 @@ namespace VoreMod.Plugins
 				.Dialogue(DialogueType.NonFatalPlayer, "See? It's not so bad! Just relax and have a great time!")
 				.Dialogue(DialogueType.NonFatalPlayer, "Aren't my belly's parties the best? I try to invite other people, but they don't seem too excited...")
 				.Dialogue(DialogueType.NonFatalPlayer, "You know, you can sleep in there if you want...slumber parties are always great, especially when they're so tasty and filling!")
-				.Dialogue(DialogueType.NonFatalPlayer, "I should totally eat some balloons and party favors...no party's complete without 'em, not even a belly party!")
+				.Dialogue(DialogueType.NonFatalPlayer, "I should totally eat some balloons and party favors...no party's complete without 'em, after all!")
 				.Dialogue(DialogueType.VoredOther, "Oohhh, it's always so fun to throw a party in my belly! You wanna join in?")
 				.Dialogue(DialogueType.VoredOther, "Hey, do you have some balloons for me to eat? I think this tum needs to be a little more festive...")
-				.Dialogue(DialogueType.VoredOther, "Happy birthday to you, happy " + $"[c/00FF00:*BURP!*]" + "-day to you...")
+				.Dialogue(DialogueType.VoredOther, "Happy birthday to you, happy " + $"[c/00BB00:*BURP!*]" + "-day to you...")
 				.Dialogue(DialogueType.PlayerTalisman, "Ooo, that necklace looks cool...and you smell like a tasty cupcake with it on, too!")
 				.Dialogue(DialogueType.PlayerTalisman, "Heyyyy! There's a party in my belly, and you're invited! Wanna stop by?")
 				.Dialogue(DialogueType.PlayerTalisman, "You smell like a yummy cake...come on, lemme have a taste! Just one bite, I promise!")
-				.Dialogue(DialogueType.PlayerAmulet, "Ooo, you look hungry...m-maybe I can give you a cake or something?")
-				.Dialogue(DialogueType.PlayerAmulet, "Oh, hey there! Got any exciting plans, or just here to have some cupcakes?...o-or me...?")
+				.Dialogue(DialogueType.PlayerAmulet, "You look...hungry...r-really hungry...m-maybe I can give you a cake or something?")
+				.Dialogue(DialogueType.PlayerAmulet, "H-huh? A sweet snack to eat? W-well, I have some sweets for you to munch on, maybe?")
 				.Dialogue(DialogueType.PlayerAmulet, "Wait, a party in YOUR belly?...that sounds awesome, lemme in!"))
 
 			.NPC(NPCID.Pirate, nameof(NPCID.Pirate), npc => npc
@@ -145,7 +148,8 @@ namespace VoreMod.Plugins
 				.Sprite(SpriteType.Belly, "TownNPCs/Steampunker_Belly", sprite => sprite
 					.Layout(SpriteLayout.SizeY)
 					.Frames(15)
-					.Offset(13f, 8f)))
+					.Offset(13f, 8f))
+				.Dialogue(DialogueType.DigestingPlayer, "Bloody 'ell, quit your bellyachin' and digest in there!", d => d.Tags(new DialogueTags[] { DialogueTags.BloodMoon })))
 
 			.NPC(NPCID.Stylist, nameof(NPCID.Stylist), npc => npc
 				.Tags(EntityTags.Female | EntityTags.TownNPC)
@@ -193,12 +197,16 @@ namespace VoreMod.Plugins
 			.NPC(NPCID.TravellingMerchant, nameof(NPCID.TravellingMerchant), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/TravelingMerchant_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(4f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.Truffle, nameof(NPCID.Truffle), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)
 				.Sprite(SpriteType.Belly, "TownNPCs/Truffle_Belly", sprite => sprite
-					.Layout(SpriteLayout.SizeY).Frames(6).Offset(6f, 8f).FrameOffset(0f, -2f, 3, 5).FrameOffset(0f, -2f, 9, 11)))
+					.Layout(SpriteLayout.SizeY)
+					.Frames(15)
+					.Offset(13f, 8f)))
 
 			.NPC(NPCID.WitchDoctor, nameof(NPCID.WitchDoctor), npc => npc
 				.Tags(EntityTags.Male | EntityTags.TownNPC)

@@ -65,6 +65,21 @@ namespace VoreMod
 		#region Stylist
 		public static float storedStatsMultStylist; // best girl is here
 		#endregion
+		#region Steampunker
+		public static float storedStatsMultTavernkeep;
+		#endregion
+		#region Steampunker
+		public static float storedStatsMultTaxDemon;
+		#endregion
+		#region Steampunker
+		public static float storedStatsMultTruffle;
+		#endregion
+		#region Steampunker
+		public static float storedStatsMultWitchDoctor;
+		#endregion
+		#region Steampunker
+		public static float storedStatsMultWizard;
+		#endregion
 		#region Zoologist (unimplemented)
 		public static float storedStatsMultZoologist;
 		#endregion
@@ -101,9 +116,17 @@ namespace VoreMod
 			storedStatsMultSanta = 1f;
 			storedStatsMultSteampunker = 1f;
 			storedStatsMultStylist = 1f;
+			storedStatsMultTavernkeep = 1f;
+			storedStatsMultTaxDemon = 1f;
+			storedStatsMultTruffle = 1f;
+			storedStatsMultWitchDoctor = 1f;
+			storedStatsMultWizard = 1f;
 			storedStatsMultZoologist = 1f;
 
 			storedStatsMultSuccubus = 1f;
+
+			storedStatsMultBandit = 1f;
+			storedStatsMultCirrus = 1f;
 		}
 
 		public override TagCompound Save()
@@ -126,9 +149,17 @@ namespace VoreMod
 				{"santaMult", storedStatsMultSanta},
 				{"steampunkerMult", storedStatsMultSteampunker},
 				{"stylistMult", storedStatsMultStylist},
+				{"taxmanMult", storedStatsMultTaxDemon},
+				{"tavernkeepMult", storedStatsMultTavernkeep},
+				{"truffleMult", storedStatsMultTruffle},
+				{"witchDoctorMult", storedStatsMultWitchDoctor},
+				{"wizardMult", storedStatsMultWizard},
 				{"zoologistMult", storedStatsMultZoologist},
 
 				{"succubusMult", storedStatsMultSuccubus},
+
+				{"banditMult", storedStatsMultBandit},
+				{"drunkPrincessMult", storedStatsMultCirrus},
 			};
 		}
 
@@ -150,9 +181,17 @@ namespace VoreMod
 			storedStatsMultSanta = tag.GetFloat("santaMult");
 			storedStatsMultSteampunker = tag.GetFloat("steampunkerMult");
 			storedStatsMultStylist = tag.GetFloat("stylistMult");
+			storedStatsMultTavernkeep = tag.GetFloat("tavernkeepMult");
+			storedStatsMultTaxDemon = tag.GetFloat("taxmanMult");
+			storedStatsMultTruffle = tag.GetFloat("truffleMult");
+			storedStatsMultWitchDoctor = tag.GetFloat("witchDoctorMult");
+			storedStatsMultWizard = tag.GetFloat("wizardMult");
 			storedStatsMultZoologist = tag.GetFloat("zoologistMult");
 
 			storedStatsMultSuccubus = tag.GetFloat("succubusMult");
+
+			storedStatsMultBandit = tag.GetFloat("banditMult");
+			storedStatsMultCirrus = tag.GetFloat("drunkPrincessMult");
 		}
 	}
 }

@@ -32,7 +32,7 @@ namespace VoreMod.Items.VoreMod.Amulets
 			switch (Tier)
 			{
 				case ItemTier.CopperTin:
-					item.rare = ItemRarityID.Gray;
+					item.rare = ItemRarityID.White;
 					item.value = 1500;
 					break;
 				case ItemTier.IronLead:
@@ -40,19 +40,19 @@ namespace VoreMod.Items.VoreMod.Amulets
 					item.value = 2250;
 					break;
 				case ItemTier.SilverTungsten:
-					item.rare = ItemRarityID.Blue;
+					item.rare = ItemRarityID.White;
 					item.value = 3750;
 					break;
 				case ItemTier.GoldPlatinum:
-					item.rare = ItemRarityID.Green;
+					item.rare = ItemRarityID.Blue;
 					item.value = 6750;
 					break;
 				case ItemTier.DemoniteCrimtane:
-					item.rare = ItemRarityID.Orange;
+					item.rare = ItemRarityID.Blue;
 					item.value = 15750;
 					break;
 				case ItemTier.Hellstone:
-					item.rare = ItemRarityID.LightRed;
+					item.rare = ItemRarityID.Orange;
 					item.value = 20750;
 					break;
 			}

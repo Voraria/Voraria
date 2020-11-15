@@ -9,17 +9,7 @@ namespace VoreMod.Items.VoreMod.Amulets
 	{
 		public override ItemTier Tier => ItemTier.DemoniteCrimtane;
 		public override int Metal => ItemID.DemoniteBar;
-		public override int Capacity => 5;
-		public override int EscapeLimit => 100;
-
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddTile(TileID.Anvils);
-			recipe.AddIngredient(ItemID.DemoniteBar, 5);
-			recipe.AddIngredient(ItemID.Amethyst, 2);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
+		public override int Capacity => 2;
+		public override int EscapeLimit => 75;
 	}
 }

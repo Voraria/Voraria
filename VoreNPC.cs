@@ -131,18 +131,41 @@ namespace VoreMod
 				{
 					storedPredStatsMult = VoreWorld.storedStatsMultStylist;
 				}
+				if (npc.type == NPCID.DD2Bartender)
+				{
+					storedPredStatsMult = VoreWorld.storedStatsMultTavernkeep;
+				}
+				if (npc.type == NPCID.TaxCollector)
+				{
+					storedPredStatsMult = VoreWorld.storedStatsMultTaxDemon;
+				}
+				if (npc.type == NPCID.Truffle)
+				{
+					storedPredStatsMult = VoreWorld.storedStatsMultTruffle;
+				}
+				if (npc.type == NPCID.WitchDoctor)
+				{
+					storedPredStatsMult = VoreWorld.storedStatsMultWitchDoctor;
+				}
+				if (npc.type == NPCID.Wizard)
+				{
+					storedPredStatsMult = VoreWorld.storedStatsMultWizard;
+				}
 				/*if (npc.type == NPCID.Zoologist)
 				{
 					storedPredStatsMult = VoreWorld.storedStatsMultZoologist;
 				}*/
 
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("THIEF"))
+				if (ModLoader.GetMod("CalamityMod") != null)
 				{
-					storedPredStatsMult = VoreWorld.storedStatsMultBandit;
-				}
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultCirrus;
+					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("THIEF"))
+					{
+						storedPredStatsMult = VoreWorld.storedStatsMultBandit;
+					}
+					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("FAP"))
+					{
+						storedPredStatsMult = VoreWorld.storedStatsMultCirrus;
+					}
 				}
 
 				if (npc.type == ModContent.NPCType<Succubus>())
@@ -154,88 +177,6 @@ namespace VoreMod
 				npc.defDamage = (int)((float)storedPredDamage * storedPredStatsMult);
 				npc.defDefense = (int)((float)storedPredDefense * storedPredStatsMult);
 
-				if (npc.type == NPCID.ArmsDealer)
-				{
-					VoreWorld.storedStatsMultArmsDealer = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Clothier)
-				{
-					VoreWorld.storedStatsMultClothier = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Cyborg)
-				{
-					VoreWorld.storedStatsMultCyborg = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Demolitionist)
-				{
-					VoreWorld.storedStatsMultDemolitionist = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Dryad)
-				{
-					VoreWorld.storedStatsMultDryad = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.DyeTrader)
-				{
-					VoreWorld.storedStatsMultDyeTrader = storedPredStatsMult;
-				}
-				/*if (npc.type == NPCID.Golfer)
-				{
-					VoreWorld.storedStatsMultGolfer = storedPredStatsMult;
-				}*/
-				if (npc.type == NPCID.Guide)
-				{
-					VoreWorld.storedStatsMultGuide = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Mechanic)
-				{
-					VoreWorld.storedStatsMultMechanic = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Nurse)
-				{
-					VoreWorld.storedStatsMultNurse = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Painter)
-				{
-					VoreWorld.storedStatsMultPainter = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.PartyGirl)
-				{
-					VoreWorld.storedStatsMultPartyGirl = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Pirate)
-				{
-					VoreWorld.storedStatsMultPirate = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.SantaClaus)
-				{
-					VoreWorld.storedStatsMultSanta = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Steampunker)
-				{
-					VoreWorld.storedStatsMultSteampunker = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Stylist)
-				{
-					VoreWorld.storedStatsMultStylist = storedPredStatsMult;
-				}
-				/*if (npc.type == NPCID.Zoologist)
-				{
-					VoreWorld.storedStatsMultZoologist = storedPredStatsMult;
-				}*/
-
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("THIEF"))
-				{
-					VoreWorld.storedStatsMultBandit = storedPredStatsMult;
-				}
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
-				{
-					VoreWorld.storedStatsMultCirrus = storedPredStatsMult;
-				}
-
-				if (npc.type == ModContent.NPCType<Succubus>())
-				{
-					VoreWorld.storedStatsMultSuccubus = storedPredStatsMult;
-				}
 				npc.life = npc.lifeMax;
 				npc.damage = npc.defDamage;
 				npc.defense = npc.defDefense;
@@ -311,18 +252,41 @@ namespace VoreMod
 				{
 					VoreWorld.storedStatsMultStylist = storedPredStatsMult;
 				}
+				if (npc.type == NPCID.DD2Bartender)
+				{
+					VoreWorld.storedStatsMultTavernkeep = storedPredStatsMult;
+				}
+				if (npc.type == NPCID.TaxCollector)
+				{
+					VoreWorld.storedStatsMultTaxDemon = storedPredStatsMult;
+				}
+				if (npc.type == NPCID.Truffle)
+				{
+					VoreWorld.storedStatsMultTruffle = storedPredStatsMult;
+				}
+				if (npc.type == NPCID.WitchDoctor)
+				{
+					VoreWorld.storedStatsMultWitchDoctor = storedPredStatsMult;
+				}
+				if (npc.type == NPCID.Wizard)
+				{
+					VoreWorld.storedStatsMultWizard = storedPredStatsMult;
+				}
 				/*if (npc.type == NPCID.Zoologist)
 				{
 					VoreWorld.storedStatsMultZoologist = storedPredStatsMult;
 				}*/
 
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("THIEF"))
+				if (ModLoader.GetMod("CalamityMod") != null)
 				{
-					VoreWorld.storedStatsMultBandit = storedPredStatsMult;
-				}
-				if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
-				{
-					VoreWorld.storedStatsMultCirrus = storedPredStatsMult;
+					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("THIEF"))
+					{
+						VoreWorld.storedStatsMultBandit = storedPredStatsMult;
+					}
+					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("FAP"))
+					{
+						VoreWorld.storedStatsMultCirrus = storedPredStatsMult;
+					}
 				}
 
 				if (npc.type == ModContent.NPCType<Succubus>())
@@ -415,6 +379,26 @@ namespace VoreMod
 			if (npc.type == NPCID.Stylist)
 			{
 				VoreWorld.storedStatsMultStylist = 1f;
+			}
+			if (npc.type == NPCID.DD2Bartender)
+			{
+				VoreWorld.storedStatsMultTavernkeep = 1f;
+			}
+			if (npc.type == NPCID.TaxCollector)
+			{
+				VoreWorld.storedStatsMultTaxDemon = 1f;
+			}
+			if (npc.type == NPCID.Truffle)
+			{
+				VoreWorld.storedStatsMultTruffle = 1f;
+			}
+			if (npc.type == NPCID.WitchDoctor)
+			{
+				VoreWorld.storedStatsMultWitchDoctor = 1f;
+			}
+			if (npc.type == NPCID.Wizard)
+			{
+				VoreWorld.storedStatsMultWizard = 1f;
 			}
 			/*if (npc.type == NPCID.Zoologist)
 			{

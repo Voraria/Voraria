@@ -339,15 +339,6 @@ namespace VoreMod
                 PlayerHooks.Kill(player, dmg, hitDirection, pvp, damageSource);
             else
             {
-                if (player.GetEntity().GetPredator() is VoreEntityNPC)
-                {
-                    NPC fatty = Main.npc[player.GetEntity().GetPredator().GetID()];
-                    if (fatty.type == NPCID.Stylist)
-                    {
-                        VoreWorld.storedPlayerSnacksStylist++;
-                    }
-                }
-
                 player.GetEntity().Death();
             }
             player.immuneAlpha = 0;

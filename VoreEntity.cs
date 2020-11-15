@@ -535,7 +535,32 @@ namespace VoreMod
             // Windy Day
             if (Main.raining) tags |= DialogueTags.Rain;
             if (Main.LocalPlayer.ZoneSandstorm) tags |= DialogueTags.Sandstorm;
-            // Thunderstorm
+			// Thunderstorm
+
+			if (NPC.FindFirstNPC(NPCID.ArmsDealer) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.ArmsDealer)].homeless) tags |= DialogueTags.ArmsDealerPresent;
+			if (NPC.FindFirstNPC(NPCID.Clothier) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Clothier)].homeless) tags |= DialogueTags.ClothierPresent;
+			if (NPC.FindFirstNPC(NPCID.Cyborg) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Cyborg)].homeless) tags |= DialogueTags.CyborgPresent;
+			if (NPC.FindFirstNPC(NPCID.Demolitionist) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Demolitionist)].homeless) tags |= DialogueTags.DemolitionistPresent;
+			if (NPC.FindFirstNPC(NPCID.Dryad) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Dryad)].homeless) tags |= DialogueTags.DryadPresent;
+			if (NPC.FindFirstNPC(NPCID.DyeTrader) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.DyeTrader)].homeless) tags |= DialogueTags.DyeTraderPresent;
+			if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.GoblinTinkerer)].homeless) tags |= DialogueTags.GoblinTinkererPresent;
+			// if (NPC.FindFirstNPC(NPCID.Golfer) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Golfer)].homeless) tags |= DialogueTags.GolferPresent;
+			if (NPC.FindFirstNPC(NPCID.Guide) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Guide)].homeless) tags |= DialogueTags.GuidePresent;
+			if (NPC.FindFirstNPC(NPCID.Mechanic) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Mechanic)].homeless) tags |= DialogueTags.MechanicPresent;
+			if (NPC.FindFirstNPC(NPCID.Nurse) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Nurse)].homeless) tags |= DialogueTags.NursePresent;
+			if (NPC.FindFirstNPC(NPCID.Painter) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Painter)].homeless) tags |= DialogueTags.PainterPresent;
+			if (NPC.FindFirstNPC(NPCID.PartyGirl) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.PartyGirl)].homeless) tags |= DialogueTags.PartyGirlPresent;
+			if (NPC.FindFirstNPC(NPCID.Pirate) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Pirate)].homeless) tags |= DialogueTags.PiratePresent;
+			if (NPC.FindFirstNPC(NPCID.SantaClaus) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.SantaClaus)].homeless) tags |= DialogueTags.SantaPresent;
+			if (NPC.FindFirstNPC(NPCID.Steampunker) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Steampunker)].homeless) tags |= DialogueTags.SteampunkerPresent;
+			if (NPC.FindFirstNPC(NPCID.Stylist) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Stylist)].homeless) tags |= DialogueTags.StylistPresent;
+			if (NPC.FindFirstNPC(NPCID.DD2Bartender) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.DD2Bartender)].homeless) tags |= DialogueTags.TavernkeepPresent;
+			if (NPC.FindFirstNPC(NPCID.TaxCollector) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.TaxCollector)].homeless) tags |= DialogueTags.TaxCollectorPresent;
+			if (NPC.FindFirstNPC(NPCID.TravellingMerchant) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.TravellingMerchant)].homeless) tags |= DialogueTags.TravellingMerchantPresent;
+			if (NPC.FindFirstNPC(NPCID.Truffle) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.TravellingMerchant)].homeless) tags |= DialogueTags.TrufflePresent;
+			if (NPC.FindFirstNPC(NPCID.WitchDoctor) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.WitchDoctor)].homeless) tags |= DialogueTags.WitchDoctorPresent;
+			if (NPC.FindFirstNPC(NPCID.Wizard) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Wizard)].homeless) tags |= DialogueTags.WizardPresent;
+			// if (NPC.FindFirstNPC(NPCID.Zoologist) >= 0 && !Main.npc[NPC.FindFirstNPC(NPCID.Zoologist)].homeless) tags |= DialogueTags.ZoologistPresent;
 
             return tags;
         }

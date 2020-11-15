@@ -10,5 +10,11 @@ namespace VoreMod
 		GoldPlatinum = 4,
 		DemoniteCrimtane = 5,
 		Hellstone = 6,
+		CobaltPalladium = 7,
+		MythrilOrichalcum = 8,
+		TitaniumAdamantite = 9,
+		Hallowed = 10,
+		Chlorophyte = 11,
+		Luminite = 12,
 	}
 }

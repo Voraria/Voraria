@@ -23,7 +23,9 @@ namespace VoreMod
 		public string GetText(VoreEntity pred, VoreEntity prey) => string.Format(text
 			.Replace("{Pred}", "{0}")
 			.Replace("{Prey}", "{1}")
-			.Replace("{Nurse}", DialogueHelpers.GetNPCName(NPCID.Nurse)),
+			.Replace("{Dryad}", DialogueHelpers.GetNPCName(NPCID.Dryad))
+			.Replace("{Nurse}", DialogueHelpers.GetNPCName(NPCID.Nurse))
+			.Replace("{Stylist}", DialogueHelpers.GetNPCName(NPCID.Stylist)),
 			pred, prey);
 
 		public VoreType GetVoreType() => voreType;

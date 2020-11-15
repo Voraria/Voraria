@@ -37,7 +37,7 @@ namespace VoreMod
 		ArmsDealerPresent = 1 << 24,
 		ClothierPresent = 1 << 25,
 		CyborgPresent = 1 << 26,
-		DemomanFromTF2Present = 1 << 27,
+		DemolitionistPresent = 1 << 27,
 		DryadPresent = 1 << 28,
 		DyeTraderPresent = 1 << 29,
 		GoblinTinkererPresent = 1 << 30,
@@ -52,10 +52,11 @@ namespace VoreMod
 		SteampunkerPresent = 1 << 39,
 		StylistPresent = 1 << 40,
 		TavernkeepPresent = 1 << 41,
-		TravellingMerchantPresent = 1 << 42,
-		TrufflePresent = 1 << 43,
-		WitchDoctorPresent = 1 << 44,
-		WizardPresent = 1 << 45,
-		ZoologistPResent = 1 << 46, // Not implemented yet; waiting for 1.4
-	}
+		TaxCollectorPresent = 1 << 42,
+		TravellingMerchantPresent = 1 << 43,
+		TrufflePresent = 1 << 44,
+		WitchDoctorPresent = 1 << 45,
+		WizardPresent = 1 << 46,
+		ZoologistPresent = 1 << 47, // Not implemented yet; waiting for 1.4
+    }
 }

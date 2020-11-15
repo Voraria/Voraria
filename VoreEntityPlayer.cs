@@ -19,7 +19,7 @@ namespace VoreMod
 		StatePlayer playerBackup;
 
 		List<VoreSprite> cachedSprites = new List<VoreSprite>(new VoreSprite[] {
-			new VoreSprite.Builder(new VoreSprite(nameof(VoreMod) + "/Common/Belly2", SpriteType.Belly)).Layout(SpriteLayout.SizeY).Frames(15).Offset(14f, 10f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Skin)
+			new VoreSprite.Builder(new VoreSprite(nameof(VoreMod) + "/Common/Belly3", SpriteType.Belly)).Layout(SpriteLayout.SizeY).Frames(28).Offset(22f, 0f).FrameOffset(0f, -2f, 7, 9).FrameOffset(0f, -2f, 14, 16).ColorMode(ColorMode.Skin)
 		});
 
 		public VoreEntityPlayer(Player player)
