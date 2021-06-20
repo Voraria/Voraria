@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using VoreMod.Items.VoreMod.Amulets;
 using VoreMod.Items.VoreMod.Charms;
 using VoreMod.Items.VoreMod.Talismans;
+using Terraria.Audio;
 
 namespace VoreMod.NPCs.VoreMod.TownNPCs
 {
@@ -17,7 +18,6 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 		const int SOURCE_ID = NPCID.Dryad;
 
 		public override string Texture => nameof(VoreMod) + "/NPCs/" + nameof(VoreMod) + "/TownNPCs/" + nameof(Succubus);
-		public override string[] AltTextures => new[] { Texture };
 
 		int helpIndex = 0;
 
@@ -35,8 +35,6 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 
 		public override void SetDefaults()
 		{
-			Texture2D texture = ModContent.GetTexture(Texture);
-
 			npc.townNPC = true;
 			npc.friendly = true;
 			npc.width = 18;
@@ -105,7 +103,7 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 						Main.npcChatText = "If you're looking to get yourself eaten, the monsters will be happy to oblige. You can also force others to eat you using a talisman, which can be purchased from me or crafted at a workbench from gems and wood. If you want out, hold down the jump key to keep struggling and hopefully you'll break free before it's too late. Also, your friends aren't normally in the mood to digest you, but you'll be irresistable if you put on a hunger charm.";
 						break;
 					case 2:
-						Main.npcChatText = "Charms are little trinkets made with metal bars and certain other ingredients at workbenches, and have various longterm effects when used. For example, coat a life crystal in a thin layer of iron, and you've got yourself an life charm, which'll allow you to regenerate health when you digest prey! Just use any charm and you'll gain its benefits almost indefinitely, or until you dispel it yourself.";
+						Main.npcChatText = "Charms are little trinkets made with metal bars and certain other ingredients at workbenches, and have various effects when equipped. For example, coat a life crystal in a thin layer of iron, and you've got yourself a life charm, which'll allow you to regenerate health when you digest prey! Just equip a charm in the appropriate equipment slot, and you're good to gurgle.";
 						break;
 					case 3:
 						Main.npcChatText = "Some townsfolk can do weird things to the people they swallow. For example, the nurse heals you while you're in her belly, or the dryad restores your mana! This doesn't work if they're digesting you because of a hunger charm, though.";
@@ -121,7 +119,7 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
 			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TalismanThroat>());
-			if (WorldGen.CopperTierOre == TileID.Copper)
+			if (WorldGen.SavedOreTiers.Copper == TileID.Copper)
 			{
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AmuletThroatCopper>());
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CharmAcidCopper>());
@@ -145,7 +143,7 @@ namespace VoreMod.NPCs.VoreMod.TownNPCs
 				Item.NewItem(npc.getRect(), ItemID.DemonScythe);
 
 			if (!npc.GetEntity().IsBeingDigested())
-				Main.PlaySound(SoundID.NPCDeath1);
+				SoundEngine.PlaySound(SoundID.NPCDeath1);
 
 			VoreWorld.storedStatsMultSuccubus = 1f;
 		}

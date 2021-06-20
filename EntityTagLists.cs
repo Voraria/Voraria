@@ -43,12 +43,14 @@ namespace VoreMod {
 				case WebbedStylist:
 				case TravellingMerchant:
 				case SleepingAngler:
+				case Angler:
 				case TaxCollector:
 				case SkeletonMerchant:
 				case BartenderUnconscious:
-				case 588:
-				case 589:
-				case 633:
+				case Golfer:
+				case GolferRescue:
+				case BestiaryGirl:
+				case Princess:
 					return true;
 			}
 
@@ -216,9 +218,10 @@ namespace VoreMod {
 				case TheBride:
 				case SandElemental:
 				case DD2Betsy:
-				case 633:
-				case 636:
-				case 657:
+				case BestiaryGirl:
+				case HallowBoss:
+				case QueenSlimeBoss:
+				case Princess:
 					return true;
 			}
 
@@ -407,7 +410,7 @@ namespace VoreMod {
 				case MossHornet:
 				case Derpling:
 				case CrimsonAxe:
-				case PigronCrimson :
+				case PigronCrimson:
 				case FaceMonster:
 				case FloatyGross:
 				case Crimslime:
@@ -696,7 +699,7 @@ namespace VoreMod {
 				case DesertGhoulCrimson:
 				case DesertGhoulHallow:
 				case DesertScorpionWalk:
-				case DesertScorpionWall :
+				case DesertScorpionWall:
 				case DesertBeast:
 				case SlimeSpiked:
 				case SandSlime:
@@ -730,8 +733,8 @@ namespace VoreMod {
 				case DD2KoboldFlyerT2:
 				case DD2KoboldFlyerT3:
 				case DD2LightningBugT3:
-				case 580:
-				case 581:
+				case GiantFlyingAntlion:
+				case GiantWalkingAntlion:
 				case 582:
 				case 583:
 				case 584:
@@ -1066,7 +1069,7 @@ namespace VoreMod {
 				case GiantWormHead:
 				case GiantWormBody:
 				case GiantWormTail:
-				case EaterofWorldsHead :
+				case EaterofWorldsHead:
 				case EaterofWorldsBody:
 				case EaterofWorldsTail:
 				case BoneSerpentHead:
@@ -1111,7 +1114,7 @@ namespace VoreMod {
 				case CorruptPenguin:
 				case PigronCorruption:
 				case PigronHallow:
-				case PigronCrimson :
+				case PigronCrimson:
 				case SnowFlinx:
 				case Hellhound:
 				case Yeti:
@@ -1288,10 +1291,10 @@ namespace VoreMod {
 				case SlimeRibbonRed:
 				case SlimeSpiked:
 				case SandSlime:
-				case 657:
-				case 658:
-				case 659:
-				case 660:
+				case QueenSlimeBoss:
+				case QueenSlimeMinionBlue:
+				case QueenSlimeMinionPink:
+				case QueenSlimeMinionPurple:
 					return true;
 			}
 
@@ -1594,8 +1597,8 @@ namespace VoreMod {
 				case DesertScorpionWalk:
 				case DesertScorpionWall :
 				case DD2LightningBugT3:
-				case 580:
-				case 581:
+				case GiantWalkingAntlion:
+				case GiantFlyingAntlion:
 				case 582:
 					return true;
 			}
@@ -1647,7 +1650,7 @@ namespace VoreMod {
 				case DD2KoboldFlyerT2:
 				case DD2KoboldFlyerT3:
 				case DD2LightningBugT3:
-				case 581:
+				case GiantFlyingAntlion:
 				case 587:
 				case 636:
 					return true;
@@ -1706,8 +1709,8 @@ namespace VoreMod {
 
 			switch(npcID)
 			{
-				case EyeofCthulhu :
-				case EaterofWorldsHead :
+				case EyeofCthulhu:
+				case EaterofWorldsHead:
 				case EaterofWorldsBody:
 				case EaterofWorldsTail:
 				case SkeletronHead:

@@ -166,7 +166,7 @@ namespace VoreMod
 			return VoreMod.GetPluginSprites(type, GetNPC());
 		}
 
-		public override int GetStruggleBonus(VoreEntity pred) => (int)System.Math.Round((npc.modNPC is Succubus ? int.MaxValue : (Main.expertMode ? npc.defDamage / 3 : npc.defDamage)) * GetLifeRatio());
+		public override int GetStruggleBonus(VoreEntity pred) => (int)System.Math.Round((npc.ModNPC is Succubus ? int.MaxValue : (Main.expertMode ? npc.defDamage / 3 : npc.defDamage)) * GetLifeRatio());
 
 		public override int GetEscapeLimit(VoreEntity prey) => (int)System.Math.Round((Main.expertMode ? npc.defDefense * 3 : npc.defDefense * 10) * GetLifeRatio());
 
@@ -185,7 +185,7 @@ namespace VoreMod
 
 		public override float GetRandomVoreChance(VoreEntity pred) => 0.75f;
 
-		public override int GetCapacity() => GetNPC().modNPC is Succubus ? int.MaxValue : 1;
+		public override int GetCapacity() => GetNPC().ModNPC is Succubus ? int.MaxValue : 1;
 
 		public override CharmEffects GetBaseCharms()
 		{
@@ -223,25 +223,25 @@ namespace VoreMod
 			if (EntityTagLists.IsMale(npc.type)) tags |= EntityTags.Male;
 			if (EntityTagLists.IsFemale(npc.type)) tags |= EntityTags.Female;
 			if (EntityTagLists.IsGenderless(npc.type)) tags |= EntityTags.Genderless;
-			if (EntityTagLists.IsBats(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsHornet(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsZombie(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsSkeleton(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsUndead(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsWorm(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsBeast(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsReptile(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsEye(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsSlime(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsConstruct(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsPlant(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsAmbient(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsFish(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsInsect(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsFlying(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsMimic(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsProjectile(npc.type)) tags |= EntityTags.TownNPC;
-			if (EntityTagLists.IsBoss(npc.type) || npc.boss) tags |= EntityTags.TownNPC;
+			if (EntityTagLists.IsBats(npc.type)) tags |= EntityTags.Bat;
+			if (EntityTagLists.IsHornet(npc.type)) tags |= EntityTags.Hornet;
+			if (EntityTagLists.IsZombie(npc.type)) tags |= EntityTags.Zombie;
+			if (EntityTagLists.IsSkeleton(npc.type)) tags |= EntityTags.Skeleton;
+			if (EntityTagLists.IsUndead(npc.type)) tags |= EntityTags.Undead;
+			if (EntityTagLists.IsWorm(npc.type)) tags |= EntityTags.Worm;
+			if (EntityTagLists.IsBeast(npc.type)) tags |= EntityTags.Beast;
+			if (EntityTagLists.IsReptile(npc.type)) tags |= EntityTags.Reptile;
+			if (EntityTagLists.IsEye(npc.type)) tags |= EntityTags.Eye;
+			if (EntityTagLists.IsSlime(npc.type)) tags |= EntityTags.Slime;
+			if (EntityTagLists.IsConstruct(npc.type)) tags |= EntityTags.Construct;
+			if (EntityTagLists.IsPlant(npc.type)) tags |= EntityTags.Plant;
+			if (EntityTagLists.IsAmbient(npc.type)) tags |= EntityTags.Critter;
+			if (EntityTagLists.IsFish(npc.type)) tags |= EntityTags.Fish;
+			if (EntityTagLists.IsInsect(npc.type)) tags |= EntityTags.Insect;
+			if (EntityTagLists.IsFlying(npc.type)) tags |= EntityTags.Flying;
+			if (EntityTagLists.IsMimic(npc.type)) tags |= EntityTags.Mimic;
+			if (EntityTagLists.IsProjectile(npc.type)) tags |= EntityTags.Projectile;
+			if (EntityTagLists.IsBoss(npc.type) || npc.boss) tags |= EntityTags.Boss;
 			return tags;
 		}
 
@@ -257,7 +257,6 @@ namespace VoreMod
 				case NPCID.ForceBubble:
 				case NPCID.DD2EterniaCrystal:
 				case NPCID.DD2LanePortal:
-
 				case NPCID.TargetDummy:
 					return false;
 			}

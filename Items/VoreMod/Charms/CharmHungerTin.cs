@@ -6,9 +6,9 @@ using VoreMod.Buffs;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-    public class CharmHungerTin : CharmHungerBase
-    {
-        public override ItemTier Tier => ItemTier.CopperTin;
-        public override int Metal => ItemID.TinBar;
-    }
+	public class CharmHungerTin : CharmHungerBase
+	{
+		public override ItemTier Tier => ItemTier.CopperTin;
+		public override int Metal => ItemID.TinBar;
+	}
 }

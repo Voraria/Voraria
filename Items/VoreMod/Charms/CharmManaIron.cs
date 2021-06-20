@@ -6,9 +6,9 @@ using VoreMod.Buffs;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-    public class CharmManaIron : CharmManaBase
-    {
-        public override ItemTier Tier => ItemTier.IronLead;
-        public override int Metal => ItemID.IronBar;
-    }
+	public class CharmManaIron : CharmManaBase
+	{
+		public override ItemTier Tier => ItemTier.IronLead;
+		public override int Metal => ItemID.IronBar;
+	}
 }

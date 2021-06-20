@@ -1,18 +1,18 @@
+using IL.Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using VoreMod.Items;
-using VoreMod.Items.VoreMod.Amulets;
 using VoreMod.NPCs.VoreMod.TownNPCs;
 
 namespace VoreMod
 {
+	[Autoload]
 	public class VoreNPC : GlobalNPC
 	{
 		public VoreEntity entity;
@@ -67,110 +67,10 @@ namespace VoreMod
 				storedPredDefense = npc.defense;
 				storedPredStatsMult = 1f;
 
-				if (npc.type == NPCID.ArmsDealer)
+				for (int i = 0; i < NPCLoader.NPCCount; i++)
 				{
-					storedPredStatsMult = VoreWorld.storedStatsMultArmsDealer;
-				}
-				if (npc.type == NPCID.Clothier)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultClothier;
-				}
-				if (npc.type == NPCID.Cyborg)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultCyborg;
-				}
-				if (npc.type == NPCID.Demolitionist)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultDemolitionist;
-				}
-				if (npc.type == NPCID.Dryad)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultDryad;
-				}
-				if (npc.type == NPCID.DyeTrader)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultDyeTrader;
-				}
-				/*if (npc.type == NPCID.Golfer)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultGolfer;
-				}*/
-				if (npc.type == NPCID.Guide)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultGuide;
-				}
-				if (npc.type == NPCID.Mechanic)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultMechanic;
-				}
-				if (npc.type == NPCID.Nurse)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultNurse;
-				}
-				if (npc.type == NPCID.Painter)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultPainter;
-				}
-				if (npc.type == NPCID.PartyGirl)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultPartyGirl;
-				}
-				if (npc.type == NPCID.Pirate)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultPirate;
-				}
-				if (npc.type == NPCID.SantaClaus)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultSanta;
-				}
-				if (npc.type == NPCID.Steampunker)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultSteampunker;
-				}
-				if (npc.type == NPCID.Stylist)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultStylist;
-				}
-				if (npc.type == NPCID.DD2Bartender)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultTavernkeep;
-				}
-				if (npc.type == NPCID.TaxCollector)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultTaxDemon;
-				}
-				if (npc.type == NPCID.Truffle)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultTruffle;
-				}
-				if (npc.type == NPCID.WitchDoctor)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultWitchDoctor;
-				}
-				if (npc.type == NPCID.Wizard)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultWizard;
-				}
-				/*if (npc.type == NPCID.Zoologist)
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultZoologist;
-				}*/
-
-				if (ModLoader.GetMod("CalamityMod") != null)
-				{
-					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("THIEF"))
-					{
-						storedPredStatsMult = VoreWorld.storedStatsMultBandit;
-					}
-					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("FAP"))
-					{
-						storedPredStatsMult = VoreWorld.storedStatsMultCirrus;
-					}
-				}
-
-				if (npc.type == ModContent.NPCType<Succubus>())
-				{
-					storedPredStatsMult = VoreWorld.storedStatsMultSuccubus;
+					if (VoreWorld.townNPCIDs.Contains(i))
+						storedPredStatsMult = VoreWorld.storedStatsMultForTownNPCs[i];
 				}
 
 				npc.lifeMax = (int)((float)storedPredHealth * storedPredStatsMult);
@@ -188,110 +88,11 @@ namespace VoreMod
 				npc.defDamage = (int)((float)storedPredDamage * storedPredStatsMult);
 				npc.defDefense = (int)((float)storedPredDefense * storedPredStatsMult);
 
-				if (npc.type == NPCID.ArmsDealer)
-				{
-					VoreWorld.storedStatsMultArmsDealer = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Clothier)
-				{
-					VoreWorld.storedStatsMultClothier = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Cyborg)
-				{
-					VoreWorld.storedStatsMultCyborg = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Demolitionist)
-				{
-					VoreWorld.storedStatsMultDemolitionist = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Dryad)
-				{
-					VoreWorld.storedStatsMultDryad = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.DyeTrader)
-				{
-					VoreWorld.storedStatsMultDyeTrader = storedPredStatsMult;
-				}
-				/*if (npc.type == NPCID.Golfer)
-				{
-					VoreWorld.storedStatsMultGolfer = storedPredStatsMult;
-				}*/
-				if (npc.type == NPCID.Guide)
-				{
-					VoreWorld.storedStatsMultGuide = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Mechanic)
-				{
-					VoreWorld.storedStatsMultMechanic = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Nurse)
-				{
-					VoreWorld.storedStatsMultNurse = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Painter)
-				{
-					VoreWorld.storedStatsMultPainter = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.PartyGirl)
-				{
-					VoreWorld.storedStatsMultPartyGirl = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Pirate)
-				{
-					VoreWorld.storedStatsMultPirate = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.SantaClaus)
-				{
-					VoreWorld.storedStatsMultSanta = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Steampunker)
-				{
-					VoreWorld.storedStatsMultSteampunker = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Stylist)
-				{
-					VoreWorld.storedStatsMultStylist = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.DD2Bartender)
-				{
-					VoreWorld.storedStatsMultTavernkeep = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.TaxCollector)
-				{
-					VoreWorld.storedStatsMultTaxDemon = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Truffle)
-				{
-					VoreWorld.storedStatsMultTruffle = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.WitchDoctor)
-				{
-					VoreWorld.storedStatsMultWitchDoctor = storedPredStatsMult;
-				}
-				if (npc.type == NPCID.Wizard)
-				{
-					VoreWorld.storedStatsMultWizard = storedPredStatsMult;
-				}
-				/*if (npc.type == NPCID.Zoologist)
-				{
-					VoreWorld.storedStatsMultZoologist = storedPredStatsMult;
-				}*/
 
-				if (ModLoader.GetMod("CalamityMod") != null)
+				for (int i = 0; i < NPCLoader.NPCCount; i++)
 				{
-					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("THIEF"))
-					{
-						VoreWorld.storedStatsMultBandit = storedPredStatsMult;
-					}
-					if (npc.type == ModLoader.GetMod("CalamityMod").NPCType("FAP"))
-					{
-						VoreWorld.storedStatsMultCirrus = storedPredStatsMult;
-					}
-				}
-
-				if (npc.type == ModContent.NPCType<Succubus>())
-				{
-					VoreWorld.storedStatsMultSuccubus = storedPredStatsMult;
+					if (VoreWorld.townNPCIDs.Contains(i))
+						VoreWorld.storedStatsMultForTownNPCs[i] = storedPredStatsMult;
 				}
 			}
 		}
@@ -314,107 +115,11 @@ namespace VoreMod
 			knockback = (int)fullKB;
 		}
 
-		public override void NPCLoot(NPC npc)
+		public override void OnKill(NPC npc)
 		{
-			if (npc.type == NPCID.ArmsDealer)
-			{
-				VoreWorld.storedStatsMultArmsDealer = 1f;
-			}
-			if (npc.type == NPCID.Clothier)
-			{
-				VoreWorld.storedStatsMultClothier = 1f;
-			}
-			if (npc.type == NPCID.Cyborg)
-			{
-				VoreWorld.storedStatsMultCyborg = 1f;
-			}
-			if (npc.type == NPCID.Demolitionist)
-			{
-				VoreWorld.storedStatsMultDemolitionist = 1f;
-			}
-			if (npc.type == NPCID.Dryad)
-			{
-				VoreWorld.storedStatsMultDryad = 1f;
-			}
-			if (npc.type == NPCID.DyeTrader)
-			{
-				VoreWorld.storedStatsMultDyeTrader = 1f;
-			}
-			/*if (npc.type == NPCID.Golfer)
-			{
-				VoreWorld.storedStatsMultGolfer = 1f;
-			}*/
-			if (npc.type == NPCID.Guide)
-			{
-				VoreWorld.storedStatsMultGuide = 1f;
-			}
-			if (npc.type == NPCID.Mechanic)
-			{
-				VoreWorld.storedStatsMultMechanic = 1f;
-			}
-			if (npc.type == NPCID.Nurse)
-			{
-				VoreWorld.storedStatsMultNurse = 1f;
-			}
-			if (npc.type == NPCID.Painter)
-			{
-				VoreWorld.storedStatsMultPainter = 1f;
-			}
-			if (npc.type == NPCID.PartyGirl)
-			{
-				VoreWorld.storedStatsMultPartyGirl = 1f;
-			}
-			if (npc.type == NPCID.Pirate)
-			{
-				VoreWorld.storedStatsMultPirate = 1f;
-			}
-			if (npc.type == NPCID.SantaClaus)
-			{
-				VoreWorld.storedStatsMultSanta = 1f;
-			}
-			if (npc.type == NPCID.Steampunker)
-			{
-				VoreWorld.storedStatsMultSteampunker = 1f;
-			}
-			if (npc.type == NPCID.Stylist)
-			{
-				VoreWorld.storedStatsMultStylist = 1f;
-			}
-			if (npc.type == NPCID.DD2Bartender)
-			{
-				VoreWorld.storedStatsMultTavernkeep = 1f;
-			}
-			if (npc.type == NPCID.TaxCollector)
-			{
-				VoreWorld.storedStatsMultTaxDemon = 1f;
-			}
-			if (npc.type == NPCID.Truffle)
-			{
-				VoreWorld.storedStatsMultTruffle = 1f;
-			}
-			if (npc.type == NPCID.WitchDoctor)
-			{
-				VoreWorld.storedStatsMultWitchDoctor = 1f;
-			}
-			if (npc.type == NPCID.Wizard)
-			{
-				VoreWorld.storedStatsMultWizard = 1f;
-			}
-			/*if (npc.type == NPCID.Zoologist)
-			{
-				VoreWorld.storedStatsMultZoologist = 1f;
-			}*/
-
-			if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("THIEF"))
-			{
-				VoreWorld.storedStatsMultBandit = 1f;
-			}
-			if (npc.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP"))
-			{
-				VoreWorld.storedStatsMultCirrus = 1f;
-			}
+			if (VoreWorld.townNPCIDs.Contains(npc.type))
+				VoreWorld.storedStatsMultForTownNPCs[npc.type] = 1f;
 			npc.GetEntity().Death();
-			base.NPCLoot(npc);
 		}
 
 		public override void HitEffect(NPC npc, int hitDirection, double damage)
@@ -435,45 +140,48 @@ namespace VoreMod
 
 		public override bool CheckDead(NPC npc)
 		{
-			if (npc.GetEntity().IsSwallowed()) return false;
+			if (npc.GetEntity().IsSwallowed())
+				return false;
+
 			return base.CheckDead(npc);
 		}
 
 		public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
 		{
-			if (item.modItem is AmuletBase) return player.GetEntity().CanSwallow(npc);
-			if (item.modItem is TalismanBase) return npc.GetEntity().CanSwallow(player);
-			if (!player.GetEntity().CanDamage(npc)) return false;
+			if (item.ModItem is TalismanBase)
+				return npc.GetEntity().CanSwallow(player);
+			if (!player.GetEntity().CanDamage(npc))
+				return false;
+
 			return base.CanBeHitByItem(npc, player, item);
 		}
 
 		public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
 		{
-			if (!npc.GetEntity().CanBeDamaged()) return false;
+			if (!npc.GetEntity().CanBeDamaged())
+				return false;
+
 			return base.CanBeHitByProjectile(npc, projectile);
 		}
 
 		public override bool? CanHitNPC(NPC npc, NPC target)
 		{
-			if (!npc.GetEntity().CanDamage(target)) return false;
+			if (!npc.GetEntity().CanDamage(target))
+				return false;
+
 			return base.CanHitNPC(npc, target);
 		}
 
 		public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
 		{
-			if (!npc.GetEntity().CanDamage(target)) return false;
+			if (!npc.GetEntity().CanDamage(target))
+				return false;
 			return base.CanHitPlayer(npc, target, ref cooldownSlot);
 		}
 
 		public override void ModifyHitNPC(NPC npc, NPC target, ref int damage, ref float knockback, ref bool crit)
 		{
-			if (target.type == NPCID.Stylist && VoreWorld.storedStatsMultStylist >= 2.00f && target.GetEntity().CanSwallow(npc))
-			{
-				damage = 0;
-				target.GetEntity().Swallow(npc);
-				return;
-			}
-			if (target.type == ModLoader.GetMod("CalamityMod")?.NPCType("FAP") && target.GetEntity().CanSwallow(npc))
+			if (target.type == NPCID.Stylist && target.Vore().storedPredStatsMult >= 2.00f && target.GetEntity().CanSwallow(npc))
 			{
 				damage = 0;
 				target.GetEntity().Swallow(npc);
@@ -509,20 +217,19 @@ namespace VoreMod
 			return base.DrawHealthBar(npc, hbPosition, ref scale, ref position);
 		}
 
-		public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
+		public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
-			if (npc.GetEntity().IsSwallowed() && !npc.GetEntity().ShouldShowWhileSwallowed()) return false;
+			if (npc.GetEntity().IsSwallowed() && !npc.GetEntity().ShouldShowWhileSwallowed())
+				return false;
 			cachedScale = npc.scale;
 			npc.scale *= npc.GetEntity().GetScale();
-			return base.PreDraw(npc, spriteBatch, drawColor);
+			return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
 		}
 
 		public override void DrawBehind(NPC npc, int index)
 		{
 			if (npc.GetEntity().HasSwallowedAny())
-			{
 				Main.instance.DrawCacheNPCsOverPlayers.Add(index);
-			}
 		}
 
 		public static void DrawLayer(NPC npc, SpriteBatch batch, Color drawColor, SpriteType type)
@@ -553,13 +260,10 @@ namespace VoreMod
 			}
 		}
 
-		public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
+		public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
-			base.PostDraw(npc, spriteBatch, drawColor);
 			if (!npc.GetEntity().IsSwallowed() || npc.GetEntity().ShouldShowWhileSwallowed())
-			{
 				DrawLayer(npc, spriteBatch, drawColor, SpriteType.Belly);
-			}
 			npc.scale = cachedScale;
 		}
 
@@ -671,22 +375,13 @@ namespace VoreMod
 					}
 				}
 			}
-			else if (Main.LocalPlayer.HeldItem.modItem is TalismanBase)
+			else if (Main.LocalPlayer.HeldItem.ModItem is TalismanBase)
 			{
 				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerTalisman, npc, entity.GetDialogueTags()), npc, player))
 				{
 					msgs.Add("Oh my, is that a talisman? Looking for a place to nap, or do you want the full tour?");
 					msgs.Add("Is my little belly pet ready to go?");
 					msgs.Add("You know, you're looking especially delicious today.");
-				}
-			}
-			else if (Main.LocalPlayer.HeldItem.modItem is AmuletBase)
-			{
-				if (!msgs.TryAddAll(VoreMod.GetPluginDialogues(DialogueType.PlayerAmulet, npc, entity.GetDialogueTags()), player, npc))
-				{
-					msgs.Add("An amulet, huh? I see that hungry look in your eyes...");
-					msgs.Add("If it's my time to go, getting eaten by you is far from the worst way to do it.");
-					msgs.Add("I'm ready; please eat me!");
 				}
 			}
 			if (msgs.elements.Count == 0)

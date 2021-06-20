@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
@@ -123,7 +125,7 @@ namespace TerraUI.Objects {
 		/// The default left click event.
 		/// </summary>
 		public override void OnLeftClick() {
-			if(Main.mouseItem.stack < 1 && item.type < 1) {
+			if(Main.mouseItem.stack < 1 && Item.type < 1) {
 				return;
 			}
 
@@ -151,7 +153,7 @@ namespace TerraUI.Objects {
 		/// <param name="item2">second item</param>
 		public void Swap(ref Item item1, ref Item item2) {
 			UIUtils.SwitchItems(ref item1, ref item2);
-			Main.PlaySound(SoundID.Grab);
+			SoundEngine.PlaySound(SoundID.Grab);
 			Recipe.FindRecipes();
 		}
 
@@ -160,7 +162,7 @@ namespace TerraUI.Objects {
 		/// </summary>
 		public void ToggleVisibility() {
 			ItemVisible = !ItemVisible;
-			Main.PlaySound(SoundID.MenuTick);
+			SoundEngine.PlaySound(SoundID.MenuTick);
 		}
 
 		/// <summary>
@@ -266,7 +268,7 @@ namespace TerraUI.Objects {
 		/// </summary>
 		/// <param name="spriteBatch">drawing SpriteBatch</param>
 		public void OnDrawItem(SpriteBatch spriteBatch) {
-			Texture2D texture2D = Main.itemTexture[Item.type];
+			Texture2D texture2D = TextureAssets.Item[Item.type].Value;
 			Rectangle rectangle;
 
 			if(Main.itemAnimations[Item.type] != null) {
@@ -294,7 +296,7 @@ namespace TerraUI.Objects {
 			if(Item.stack > 1) {
 				ChatManager.DrawColorCodedStringWithShadow(
 					spriteBatch,
-					Main.fontItemStack,
+					FontAssets.ItemStack.Value,
 					Item.stack.ToString(),
 					RelativePosition + new Vector2(9f, 22f) * Scale(false),
 					Color.White,
@@ -311,10 +313,10 @@ namespace TerraUI.Objects {
 		/// </summary>
 		/// <param name="spriteBatch"></param>
 		public void DrawTick(SpriteBatch spriteBatch) {
-			Texture2D tickTexture = Main.inventoryTickOnTexture;
+			Texture2D tickTexture = TextureAssets.InventoryTickOn.Value;
 
 			if(!ItemVisible) {
-				tickTexture = Main.inventoryTickOffTexture;
+				tickTexture = TextureAssets.InventoryTickOff.Value;
 			}
 
 			tickRect = new Rectangle(Rectangle.Right - 18, Rectangle.Top - 2, tickTexture.Width, tickTexture.Height);

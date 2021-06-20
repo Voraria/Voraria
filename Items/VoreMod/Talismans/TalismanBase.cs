@@ -12,30 +12,29 @@ namespace VoreMod.Items
 
 		public override void SetDefaults()
 		{
-			item.damage = 1;
-			item.holdStyle = ItemHoldStyleID.Default;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.width = 40;
-			item.height = 60;
-			item.useTime = 20;
-			item.useAnimation = 20;
-			item.knockBack = 0;
-			item.UseSound = SoundID.Item1;
-			item.autoReuse = false;
-			item.noUseGraphic = true;
+			Item.damage = 1;
+			Item.holdStyle = ItemHoldStyleID.None;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.width = 40;
+			Item.height = 60;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
+			Item.knockBack = 0;
+			Item.UseSound = SoundID.Item1;
+			Item.autoReuse = false;
+			Item.noUseGraphic = true;
 
-			item.value = 1000;
-			item.rare = ItemRarityID.White;
+			Item.value = 1000;
+			Item.rare = ItemRarityID.White;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.AddRecipeGroup(RecipeGroupID.Wood, 5);
-			recipe.AddIngredient(Gem, 2);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe()
+				.AddIngredient(RecipeGroupID.Wood, 5)
+				.AddIngredient(Gem, 2)
+				.AddTile(TileID.WorkBenches)
+				.Register();
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)

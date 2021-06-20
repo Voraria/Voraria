@@ -1,197 +1,166 @@
-using System.Collections.Generic;
-using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Achievements;
-using Terraria.GameContent.Events;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
+using Terraria.UI;
+using VoreMod.NPCs.VoreMod.TownNPCs;
 
 namespace VoreMod
 {
-	class VoreWorld : ModWorld
+	class VoreWorld : ModSystem
 	{
 		private const int saveVersion = 0;
 
-		#region Town NPCs: Vanilla
-		#region Arms Dealer
-		public static float storedStatsMultArmsDealer;
-		#endregion
-		#region Clothier
-		public static float storedStatsMultClothier;
-		#endregion
-		#region Cyborg
-		public static float storedStatsMultCyborg;
-		#endregion
-		#region Demolitionist
-		public static float storedStatsMultDemolitionist;
-		#endregion
-		#region Dryad
-		public static float storedStatsMultDryad;
-		#endregion
-		#region Dye Trader
-		public static float storedStatsMultDyeTrader;
-		#endregion
-		#region Golfer (unimplemented)
-		public static float storedStatsMultGolfer;
-		#endregion
-		#region Guide
-		public static float storedStatsMultGuide;
-		#endregion
-		#region Mechanic
-		public static float storedStatsMultMechanic;
-		#endregion
-		#region Nurse
-		public static float storedStatsMultNurse;
-		#endregion
-		#region Painter
-		public static float storedStatsMultPainter;
-		#endregion
-		#region Party Girl
-		public static float storedStatsMultPartyGirl;
-		#endregion
-		#region Pirate
-		public static float storedStatsMultPirate;
-		#endregion
-		#region Santa Claus
-		public static float storedStatsMultSanta;
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultSteampunker;
-		#endregion
-		#region Stylist
-		public static float storedStatsMultStylist; // best girl is here
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultTavernkeep;
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultTaxDemon;
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultTruffle;
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultWitchDoctor;
-		#endregion
-		#region Steampunker
-		public static float storedStatsMultWizard;
-		#endregion
-		#region Zoologist (unimplemented)
-		public static float storedStatsMultZoologist;
-		#endregion
-		#endregion
-		#region Town NPCs: Voraria
-		#region Succubus
-		public static float storedStatsMultSuccubus;
-		#endregion
-		#endregion
-		#region Town NPCs: Calamity
-		#region Bandit
-		public static float storedStatsMultBandit;
-		#endregion
-		#region Cirrus, the Drunk Princess
-		public static float storedStatsMultCirrus;
-		#endregion
-		#endregion
-
-		public override void Initialize()
+		public static float[] storedStatsMultForTownNPCs;
+		public static List<int> townNPCIDs = new List<int>()
 		{
-			storedStatsMultArmsDealer = 1f;
-			storedStatsMultClothier = 1f;
-			storedStatsMultCyborg = 1f;
-			storedStatsMultDemolitionist = 1f;
-			storedStatsMultDryad = 1f;
-			storedStatsMultDyeTrader = 1f;
-			storedStatsMultGolfer = 1f;
-			storedStatsMultGuide = 1f;
-			storedStatsMultMechanic = 1f;
-			storedStatsMultNurse = 1f;
-			storedStatsMultPainter = 1f;
-			storedStatsMultPartyGirl = 1f;
-			storedStatsMultPirate = 1f;
-			storedStatsMultSanta = 1f;
-			storedStatsMultSteampunker = 1f;
-			storedStatsMultStylist = 1f;
-			storedStatsMultTavernkeep = 1f;
-			storedStatsMultTaxDemon = 1f;
-			storedStatsMultTruffle = 1f;
-			storedStatsMultWitchDoctor = 1f;
-			storedStatsMultWizard = 1f;
-			storedStatsMultZoologist = 1f;
+			NPCID.ArmsDealer,
+			NPCID.BestiaryGirl,
+			NPCID.Clothier,
+			NPCID.Cyborg,
+			NPCID.Demolitionist,
+			NPCID.Dryad,
+			NPCID.DyeTrader,
+			NPCID.Golfer,
+			NPCID.Guide,
+			NPCID.Mechanic,
+			NPCID.Nurse,
+			NPCID.Painter,
+			NPCID.PartyGirl,
+			NPCID.Pirate,
+			NPCID.SantaClaus,
+			NPCID.Steampunker,
+			NPCID.Stylist,
+			NPCID.DD2Bartender,
+			NPCID.TaxCollector,
+			NPCID.Truffle,
+			NPCID.WitchDoctor,
+			NPCID.Wizard,
+		};
 
-			storedStatsMultSuccubus = 1f;
-
-			storedStatsMultBandit = 1f;
-			storedStatsMultCirrus = 1f;
+		public override void OnWorldLoad()
+		{
+			storedStatsMultForTownNPCs = new float[NPCLoader.NPCCount];
+			for (int i = 0; i < NPCLoader.NPCCount; i++)
+			{
+				if (townNPCIDs.Contains(i))
+					storedStatsMultForTownNPCs[i] = 1f;
+				else
+					storedStatsMultForTownNPCs[i] = 0f;
+			}
 		}
 
-		public override TagCompound Save()
+		public override void OnWorldUnload()
+		{
+			storedStatsMultForTownNPCs = new float[NPCLoader.NPCCount];
+			for (int i = 0; i < NPCLoader.NPCCount; i++)
+			{
+				if (townNPCIDs.Contains(i))
+					storedStatsMultForTownNPCs[i] = 1f;
+				else
+					storedStatsMultForTownNPCs[i] = 0f;
+			}
+		}
+
+		public override void PostUpdateEverything()
+		{
+			for (int i = 0; i < Main.gore.Length; i++)
+			{
+				Gore gore = Main.gore[i];
+				if (gore.active)
+				{
+					if (VoreMod.Instance.cleanVoreGore && !VoreMod.Instance.activeGore.Contains(i))
+					{
+						gore.active = false;
+					}
+					VoreMod.Instance.activeGore.Add(i);
+				}
+				else
+				{
+					VoreMod.Instance.activeGore.Remove(i);
+				}
+			}
+			VoreMod.Instance.cleanVoreGore = false;
+		}
+
+		public override void UpdateUI(GameTime gameTime)
+		{
+			VoreMod.Instance.lastTime = gameTime;
+			if (VoreMod.Instance.voreUI != null)
+				VoreMod.Instance.voreUI.UpdateUI(gameTime);
+		}
+
+		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+		{
+			if (VoreMod.Instance.voreUI != null)
+				VoreMod.Instance.voreUI.ApplyToInterfaceLayers(layers, VoreMod.Instance.lastTime);
+		}
+
+		public override void PostDrawInterface(SpriteBatch spriteBatch)
+		{
+			Main.LocalPlayer.GetModPlayer<VorePlayer>().DrawUI(spriteBatch);
+		}
+
+		public override TagCompound SaveWorldData()
 		{
 			return new TagCompound
 			{
-				{"armsDealerMult", storedStatsMultArmsDealer},
-				{"clothierMult", storedStatsMultClothier},
-				{"cyborgMult", storedStatsMultCyborg},
-				{"demolitionistMult", storedStatsMultDemolitionist},
-				{"dryadMult", storedStatsMultDryad},
-				{"dyeTraderMult", storedStatsMultDyeTrader},
-				{"golferMult", storedStatsMultGolfer},
-				{"guideMult", storedStatsMultGuide},
-				{"mechanicMult", storedStatsMultMechanic},
-				{"nurseMult", storedStatsMultNurse},
-				{"painterMult", storedStatsMultPainter},
-				{"partyGirlMult", storedStatsMultPartyGirl},
-				{"pirateMult", storedStatsMultPirate},
-				{"santaMult", storedStatsMultSanta},
-				{"steampunkerMult", storedStatsMultSteampunker},
-				{"stylistMult", storedStatsMultStylist},
-				{"taxmanMult", storedStatsMultTaxDemon},
-				{"tavernkeepMult", storedStatsMultTavernkeep},
-				{"truffleMult", storedStatsMultTruffle},
-				{"witchDoctorMult", storedStatsMultWitchDoctor},
-				{"wizardMult", storedStatsMultWizard},
-				{"zoologistMult", storedStatsMultZoologist},
+				{"armsDealerMult", storedStatsMultForTownNPCs[NPCID.ArmsDealer]},
+				{"clothierMult", storedStatsMultForTownNPCs[NPCID.Clothier]},
+				{"cyborgMult", storedStatsMultForTownNPCs[NPCID.Cyborg]},
+				{"demolitionistMult", storedStatsMultForTownNPCs[NPCID.Demolitionist]},
+				{"dryadMult", storedStatsMultForTownNPCs[NPCID.Dryad]},
+				{"dyeTraderMult", storedStatsMultForTownNPCs[NPCID.DyeTrader]},
+				{"golferMult", storedStatsMultForTownNPCs[NPCID.Golfer]},
+				{"guideMult", storedStatsMultForTownNPCs[NPCID.Guide]},
+				{"mechanicMult", storedStatsMultForTownNPCs[NPCID.Mechanic]},
+				{"nurseMult", storedStatsMultForTownNPCs[NPCID.Nurse]},
+				{"painterMult", storedStatsMultForTownNPCs[NPCID.Painter]},
+				{"partyGirlMult", storedStatsMultForTownNPCs[NPCID.PartyGirl]},
+				{"pirateMult", storedStatsMultForTownNPCs[NPCID.Pirate]},
+				{"santaMult", storedStatsMultForTownNPCs[NPCID.SantaClaus]},
+				{"steampunkerMult", storedStatsMultForTownNPCs[NPCID.Steampunker]},
+				{"stylistMult", storedStatsMultForTownNPCs[NPCID.Stylist]},
+				{"tavernkeepMult", storedStatsMultForTownNPCs[NPCID.DD2Bartender]},
+				{"taxmanMult", storedStatsMultForTownNPCs[NPCID.TaxCollector]},
+				{"truffleMult", storedStatsMultForTownNPCs[NPCID.Truffle]},
+				{"witchDoctorMult", storedStatsMultForTownNPCs[NPCID.WitchDoctor]},
+				{"wizardMult", storedStatsMultForTownNPCs[NPCID.Wizard]},
+				{"zoologistMult", storedStatsMultForTownNPCs[NPCID.BestiaryGirl]},
 
-				{"succubusMult", storedStatsMultSuccubus},
-
-				{"banditMult", storedStatsMultBandit},
-				{"drunkPrincessMult", storedStatsMultCirrus},
+				{"succubusMult", storedStatsMultForTownNPCs[ModContent.NPCType<Succubus>()]},
 			};
 		}
 
-		public override void Load(TagCompound tag)
+		public override void LoadWorldData(TagCompound tag)
 		{
-			storedStatsMultArmsDealer = tag.GetFloat("armsDealerMult");
-			storedStatsMultClothier = tag.GetFloat("clothierMult");
-			storedStatsMultCyborg = tag.GetFloat("cyborgMult");
-			storedStatsMultDemolitionist = tag.GetFloat("demolitionistMult");
-			storedStatsMultDryad = tag.GetFloat("dryadMult");
-			storedStatsMultDyeTrader = tag.GetFloat("dyeTraderMult");
-			storedStatsMultGolfer = tag.GetFloat("golferMult");
-			storedStatsMultGuide = tag.GetFloat("guideMult");
-			storedStatsMultMechanic = tag.GetFloat("mechanicMult");
-			storedStatsMultNurse = tag.GetFloat("nurseMult");
-			storedStatsMultPainter = tag.GetFloat("painterMult");
-			storedStatsMultPartyGirl = tag.GetFloat("partyGirlMult");
-			storedStatsMultPirate = tag.GetFloat("pirateMult");
-			storedStatsMultSanta = tag.GetFloat("santaMult");
-			storedStatsMultSteampunker = tag.GetFloat("steampunkerMult");
-			storedStatsMultStylist = tag.GetFloat("stylistMult");
-			storedStatsMultTavernkeep = tag.GetFloat("tavernkeepMult");
-			storedStatsMultTaxDemon = tag.GetFloat("taxmanMult");
-			storedStatsMultTruffle = tag.GetFloat("truffleMult");
-			storedStatsMultWitchDoctor = tag.GetFloat("witchDoctorMult");
-			storedStatsMultWizard = tag.GetFloat("wizardMult");
-			storedStatsMultZoologist = tag.GetFloat("zoologistMult");
+			storedStatsMultForTownNPCs[NPCID.ArmsDealer] = tag.GetFloat("armsDealerMult");
+			storedStatsMultForTownNPCs[NPCID.Clothier] = tag.GetFloat("clothierMult");
+			storedStatsMultForTownNPCs[NPCID.Cyborg] = tag.GetFloat("cyborgMult");
+			storedStatsMultForTownNPCs[NPCID.Demolitionist] = tag.GetFloat("demolitionistMult");
+			storedStatsMultForTownNPCs[NPCID.Dryad] = tag.GetFloat("dryadMult");
+			storedStatsMultForTownNPCs[NPCID.DyeTrader] = tag.GetFloat("dyeTraderMult");
+			storedStatsMultForTownNPCs[NPCID.Golfer] = tag.GetFloat("golferMult");
+			storedStatsMultForTownNPCs[NPCID.Guide] = tag.GetFloat("guideMult");
+			storedStatsMultForTownNPCs[NPCID.Mechanic] = tag.GetFloat("mechanicMult");
+			storedStatsMultForTownNPCs[NPCID.Nurse] = tag.GetFloat("nurseMult");
+			storedStatsMultForTownNPCs[NPCID.Painter] = tag.GetFloat("painterMult");
+			storedStatsMultForTownNPCs[NPCID.PartyGirl] = tag.GetFloat("partyGirlMult");
+			storedStatsMultForTownNPCs[NPCID.Pirate] = tag.GetFloat("pirateMult");
+			storedStatsMultForTownNPCs[NPCID.SantaClaus] = tag.GetFloat("santaMult");
+			storedStatsMultForTownNPCs[NPCID.Steampunker] = tag.GetFloat("steampunkerMult");
+			storedStatsMultForTownNPCs[NPCID.Stylist] = tag.GetFloat("stylistMult");
+			storedStatsMultForTownNPCs[NPCID.DD2Bartender] = tag.GetFloat("tavernkeepMult");
+			storedStatsMultForTownNPCs[NPCID.TaxCollector] = tag.GetFloat("taxmanMult");
+			storedStatsMultForTownNPCs[NPCID.Truffle] = tag.GetFloat("truffleMult");
+			storedStatsMultForTownNPCs[NPCID.WitchDoctor] = tag.GetFloat("witchDoctorMult");
+			storedStatsMultForTownNPCs[NPCID.Wizard] = tag.GetFloat("wizardMult");
+			storedStatsMultForTownNPCs[NPCID.BestiaryGirl] = tag.GetFloat("zoologistMult");
 
-			storedStatsMultSuccubus = tag.GetFloat("succubusMult");
-
-			storedStatsMultBandit = tag.GetFloat("banditMult");
-			storedStatsMultCirrus = tag.GetFloat("drunkPrincessMult");
+			storedStatsMultForTownNPCs[ModContent.NPCType<Succubus>()] = tag.GetFloat("succubusMult");
 		}
 	}
 }

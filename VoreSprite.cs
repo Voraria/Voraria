@@ -25,7 +25,7 @@ namespace VoreMod
 
 		public Texture2D GetTexture()
 		{
-			Texture2D tex = ModContent.GetTexture(path);
+			Texture2D tex = ModContent.GetTexture(path).Value;
 			if (tex == null) VoreMod.Instance.Logger.WarnFormat("Unable to find texture at {2}", path);
 			return tex;
 		}
