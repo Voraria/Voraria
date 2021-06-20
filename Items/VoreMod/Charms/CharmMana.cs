@@ -8,10 +8,9 @@ using System.Collections.Generic;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-	public abstract class CharmManaBase : CharmBase
+	public abstract class CharmMana : CharmBase
 	{
 		public override CharmEffect Effect => CharmEffect.Mana;
-		public override int Material => ItemID.ManaCrystal;
 
 		public override void SetStaticDefaults()
 		{

@@ -8,10 +8,9 @@ using System.Collections.Generic;
 
 namespace VoreMod.Items.VoreMod.Charms
 {
-	public abstract class CharmLifeBase : CharmBase
+	public abstract class CharmLife : CharmBase
 	{
 		public override CharmEffect Effect => CharmEffect.Life;
-		public override int Material => ItemID.LifeCrystal;
 
 		public override void SetStaticDefaults()
 		{
